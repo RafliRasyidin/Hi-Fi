@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/drawable/bg_card_saldo.xml" value="0.2285" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/drawable/bg_fab.xml" value="0.2285" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/drawable/bg_icon.xml" value="0.2285" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/drawable/bot_nav_selector.xml" value="0.164" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/drawable/ic_budget.xml" value="0.164" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/drawable/ic_hiburan.xml" value="0.2285" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/drawable/ic_home.xml" value="0.164" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/drawable/ic_pendapatan.xml" value="0.2285" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/drawable/ic_report.xml" value="0.164" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/drawable/ic_tab.xml" value="0.1195" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/drawable/ic_tab_active.xml" value="0.1195" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/drawable/ic_target.xml" value="0.164" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/drawable/splash_screen.xml" value="0.2285" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/activity_balance.xml" value="0.23020833333333332" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/activity_on_boarding.xml" value="0.18840579710144928" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/activity_splash.xml" value="0.32563405797101447" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/bot_sheet_category.xml" value="0.2" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/bot_sheet_source_balance.xml" value="0.21965579710144928" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/fragment_add_source_balance.xml" value="0.23020833333333332" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/fragment_add_transaction.xml" value="0.2" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/fragment_anggaran.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/fragment_balance.xml" value="0.23020833333333332" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/fragment_history.xml" value="0.23020833333333332" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/fragment_report.xml" value="0.23020833333333332" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/fragment_target.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/item_category.xml" value="0.22916666666666666" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/item_history_child.xml" value="0.23020833333333332" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/item_history_parent.xml" value="0.23020833333333332" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/item_source_balance.xml" value="0.2" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/item_transaction.xml" value="0.264" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/layout/toolbar_container.xml" value="0.22916666666666666" />
+        <entry key="..\:/Users/RASYIDIN/AndroidStudioProjects/AndroidProject/HiFi/app/src/main/res/menu/menu_main.xml" value="0.34270833333333334" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

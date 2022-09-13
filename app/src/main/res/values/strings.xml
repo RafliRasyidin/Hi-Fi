@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">Hi-Fi</string>
+
+    <!--KEY_PREF-->
+    <string name="hifi_preferences">HIFI_PREF</string>
+    <string name="ON_BOARDING_KEY">OnBoardingKey</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--TEXT APP-->
+    <string name="home_fragment">Beranda</string>
+    <string name="report_fragment">Laporan</string>
+    <string name="anggaran_fragment">Anggaran</string>
+    <string name="target_fragment">Target</string>
+    <string name="title_on_boarding_1">Kontrol Uang Dengan Mudah</string>
+    <string name="title_on_boarding_2">Atur Anggaran Fleksibel</string>
+    <string name="title_on_boarding_3">Capai Tujuan Keuangan</string>
+    <string name="body_on_boarding_1">Dengan pencatatan otomatis dapat melacak pengeluaran dan pemasukan dengan mudah, efisien, dan hemat waktu</string>
+    <string name="body_on_boarding_2">Kelola anggaran keuangan secara fleksibel berdasarkan kategori pengeluaran untuk masa depan yang lebih baik dan terorganisir</string>
+    <string name="body_on_boarding_3">Kendalikan keinginan yang ingin dicapai dengan menetapkan target keuangan untuk menuju kemandirian finansial</string>
+    <string name="next">Selanjutnya</string>
+    <string name="total_saldo">Total Saldo</string>
+    <string name="rp">Rp</string>
+    <string name="recent_activities">Aktivitas Terakhir</string>
+    <string name="see_more">Lihat semua</string>
+    <string name="article">Artikel</string>
+    <string name="add_transaction">Tambah Transaksi</string>
+    <string name="nominal">Nominal</string>
+    <string name="select_category">Pilih Kategori</string>
+    <string name="hint_desc">Deskripsi Singkat</string>
+    <string name="save">Simpan</string>
+    <string name="total_balance">Total Saldo</string>
+    <string name="tambah_akun">Tambah Akun</string>
+    <string name="choose_icon">Pilih Icon</string>
+    <string name="account_name">Nama Akun</string>
+    <string name="hint_account_name">Tulis Nama Akun</string>
+    <string name="jumlah_saldo">Jumlah Saldo</string>
+    <string name="hint_nominal">Rp 1.000.000</string>
+    <string name="add_account">Tambar Akun</string>
+    <string name="outcome">Pengeluaran</string>
+    <string name="income">Pemasukan</string>
+    <string name="food_and_drink"><![CDATA[Makan & Minum]]></string>
+    <string name="shop">Belanja</string>
+    <string name="transport">Kendaraan</string>
+    <string name="bill">Tagihan</string>
+    <string name="health">Kesehatan</string>
+    <string name="holiday">Liburan</string>
+    <string name="pet">Peliharaan</string>
+    <string name="insurance">Asuransi</string>
+    <string name="alm">Sedekah</string>
+    <string name="entertain">Hiburan</string>
+    <string name="hobby">Hobi</string>
+    <string name="sport">Olahraga</string>
+    <string name="social">Sosial</string>
+    <string name="etc">Lain-lain</string>
+    <string name="choose_date">Pilih tanggal</string>
+    <string name="cash">Cash</string>
+    <string name="atm">ATM</string>
+    <string name="edit_account">Edit Akun</string>
+    <string name="delete_source_balance">Hapus Akun</string>
+    <string name="desc_delete_source_balance">Apakah anda yakin ingin menghapus akun ini?</string>
+    <string name="transfer">Transfer</string>
+    <string name="savings">Tabungan</string>
+</resources>

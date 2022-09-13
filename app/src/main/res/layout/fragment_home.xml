@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.home.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_profile"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_avatar_panda"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".12" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/TextTitle18"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_body_name"
+            app:layout_constraintStart_toEndOf="@id/img_profile"
+            app:layout_constraintTop_toTopOf="@id/img_profile"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:text="Hi" />
+
+        <TextView
+            android:id="@+id/tv_body_name"
+            style="@style/TextBody14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_gray500"
+            app:layout_constraintBottom_toBottomOf="@id/img_profile"
+            app:layout_constraintStart_toStartOf="@id/tv_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            android:text="Hari yang cerah" />
+
+        <ImageView
+            android:id="@+id/img_notif"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/img_profile"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_profile"
+            app:layout_constraintWidth_percent=".06"
+            app:srcCompat="@drawable/ic_notif"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/img_chat"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/img_notif"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toStartOf="@id/img_notif"
+            app:layout_constraintTop_toTopOf="@id/img_notif"
+            app:layout_constraintWidth_percent=".06"
+            app:srcCompat="@drawable/ic_chat"
+            tools:ignore="ContentDescription" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_total_saldo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_profile">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_card_saldo">
+
+                <TextView
+                    android:id="@+id/label_total_saldo"
+                    style="@style/TextMedium16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/total_saldo"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_rp"
+                    style="@style/TextBody15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="@string/rp"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_saldo"
+                    app:layout_constraintStart_toStartOf="@id/label_total_saldo" />
+
+                <TextView
+                    android:id="@+id/tv_saldo"
+                    style="@style/TextHeader24"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="24dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_rp"
+                    app:layout_constraintTop_toBottomOf="@id/label_total_saldo" />
+
+                <ImageView
+                    android:id="@+id/img_forward"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".05"
+                    app:srcCompat="@drawable/ic_forward"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/label_recent_activities"
+            style="@style/TextTitle18"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/recent_activities"
+            app:layout_constraintEnd_toStartOf="@+id/tv_more"
+            app:layout_constraintStart_toStartOf="@id/card_total_saldo"
+            app:layout_constraintTop_toBottomOf="@id/card_total_saldo" />
+
+        <TextView
+            android:id="@+id/tv_more"
+            style="@style/TextBody14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/see_more"
+            android:textColor="@color/color_primary500"
+            app:layout_constraintBottom_toBottomOf="@+id/label_recent_activities"
+            app:layout_constraintEnd_toEndOf="@id/card_total_saldo"
+            app:layout_constraintTop_toTopOf="@id/label_recent_activities" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recent_activities"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="@id/tv_more"
+            app:layout_constraintHeight_percent=".5"
+            app:layout_constraintStart_toStartOf="@id/label_recent_activities"
+            app:layout_constraintTop_toBottomOf="@id/label_recent_activities"
+            tools:listitem="@layout/item_transaction" />
+
+        <TextView
+            android:id="@+id/label_article"
+            style="@style/TextTitle18"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/article"
+            app:layout_constraintEnd_toStartOf="@+id/tv_more_article"
+            app:layout_constraintStart_toStartOf="@id/label_recent_activities"
+            app:layout_constraintTop_toBottomOf="@id/rv_recent_activities" />
+
+        <TextView
+            android:id="@+id/tv_more_article"
+            style="@style/TextBody14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/see_more"
+            android:textColor="@color/color_primary500"
+            app:layout_constraintBottom_toBottomOf="@+id/label_article"
+            app:layout_constraintEnd_toEndOf="@id/card_total_saldo"
+            app:layout_constraintTop_toTopOf="@id/label_article" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_article"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/card_total_saldo"
+            app:layout_constraintStart_toStartOf="@id/label_article"
+            app:layout_constraintTop_toBottomOf="@id/label_article"
+            app:layout_constraintVertical_bias="0.0"
+            tools:listitem="@layout/item_transaction"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

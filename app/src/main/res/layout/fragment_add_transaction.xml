@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addTransactionFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.transaction.AddTransactionFragment">
+
+    <HorizontalScrollView
+        android:id="@+id/category_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:measureAllChildren="false"
+        app:layout_constraintDimensionRatio="3.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_outcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="@color/color_primary200"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintDimensionRatio="3.5"
+                app:layout_constraintEnd_toStartOf="@id/btn_income"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/color_primary200"
+                app:strokeWidth="2dp">
+
+                <TextView
+                    android:id="@+id/tv_outcome"
+                    style="@style/TextTitle18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:layout_gravity="center"
+                    android:text="@string/outcome"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintDimensionRatio="3.5"
+                app:layout_constraintEnd_toStartOf="@id/btn_transfer"
+                app:layout_constraintStart_toEndOf="@id/btn_outcome"
+                app:layout_constraintTop_toTopOf="@id/btn_outcome"
+                app:strokeColor="@color/color_primary200"
+                app:strokeWidth="2dp">
+
+                <TextView
+                    android:id="@+id/tv_income"
+                    style="@style/TextTitle18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:layout_gravity="center"
+                    android:text="@string/income" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_transfer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintDimensionRatio="3.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_income"
+                app:layout_constraintTop_toTopOf="@id/btn_outcome"
+                app:strokeColor="@color/color_primary200"
+                app:strokeWidth="2dp">
+
+                <TextView
+                    android:id="@+id/tv_transfer"
+                    style="@style/TextTitle18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="16dp"
+                    android:text="@string/transfer" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </HorizontalScrollView>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_container" />
+
+    <TextView
+        android:id="@+id/label_nominal"
+        style="@style/TextBody14"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/nominal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/category_container" />
+
+    <TextView
+        android:id="@+id/label_rp"
+        style="@style/TextMedium16"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/rp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_nominal"
+        app:layout_constraintStart_toStartOf="@id/label_nominal" />
+
+    <com.cottacush.android.currencyedittext.CurrencyEditText
+        android:id="@+id/et_nominal"
+        style="@style/TextHeader22"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@null"
+        android:hint="0"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/label_rp"
+        app:layout_constraintTop_toBottomOf="@id/label_nominal"
+        tools:text="240.000" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btn_type_transaction"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/label_nominal"
+        app:layout_constraintTop_toBottomOf="@id/et_nominal"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/bg_icon"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/bg_blue"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".08"
+                app:strokeWidth="0dp" />
+
+            <ImageView
+                android:id="@+id/img_type_transaction"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="6dp"
+                app:layout_constraintBottom_toBottomOf="@id/bg_icon"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintEnd_toEndOf="@id/bg_icon"
+                app:layout_constraintStart_toStartOf="@id/bg_icon"
+                app:layout_constraintTop_toTopOf="@id/bg_icon"
+                app:srcCompat="@drawable/ic_tagihan"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_type_transaction"
+                style="@style/TextMedium16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/select_category"
+                app:layout_constraintBottom_toBottomOf="@id/bg_icon"
+                app:layout_constraintEnd_toStartOf="@id/img_forward"
+                app:layout_constraintStart_toEndOf="@id/bg_icon"
+                app:layout_constraintTop_toTopOf="@id/bg_icon" />
+
+            <ImageView
+                android:id="@+id/img_forward"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio=".15"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_forward"
+                app:tint="@color/black"
+                tools:ignore="ContentDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btn_type_source"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/label_nominal"
+        app:layout_constraintTop_toBottomOf="@id/btn_type_transaction"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/bg_icon_source"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/bg_green"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".08"
+                app:strokeWidth="0dp" />
+
+            <ImageView
+                android:id="@+id/img_type_source"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="6dp"
+                app:layout_constraintBottom_toBottomOf="@id/bg_icon_source"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintEnd_toEndOf="@id/bg_icon_source"
+                app:layout_constraintStart_toStartOf="@id/bg_icon_source"
+                app:layout_constraintTop_toTopOf="@id/bg_icon_source"
+                app:srcCompat="@drawable/ic_cash"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_type_source"
+                style="@style/TextMedium16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/select_category"
+                app:layout_constraintBottom_toBottomOf="@id/bg_icon_source"
+                app:layout_constraintEnd_toStartOf="@id/img_forward_source"
+                app:layout_constraintStart_toEndOf="@id/bg_icon_source"
+                app:layout_constraintTop_toTopOf="@id/bg_icon_source" />
+
+            <ImageView
+                android:id="@+id/img_forward_source"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio=".15"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_forward"
+                app:tint="@color/black"
+                tools:ignore="ContentDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btn_select_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="1dp"
+        app:layout_constraintEnd_toEndOf="@id/btn_type_transaction"
+        app:layout_constraintStart_toStartOf="@id/btn_type_transaction"
+        app:layout_constraintTop_toBottomOf="@id/btn_type_source"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_date"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_calendar"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_select_date"
+                style="@style/TextMedium16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/img_date"
+                app:layout_constraintEnd_toStartOf="@id/img_forward_2"
+                app:layout_constraintStart_toEndOf="@id/img_date"
+                app:layout_constraintTop_toTopOf="@id/img_date"
+                tools:text="22 Juni 2022" />
+
+            <ImageView
+                android:id="@+id/img_forward_2"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_forward"
+                app:tint="@color/black"
+                tools:ignore="ContentDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btn_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="#EDF0F7"
+        app:layout_constraintEnd_toEndOf="@id/btn_select_date"
+        app:layout_constraintStart_toStartOf="@id/btn_select_date"
+        app:layout_constraintTop_toBottomOf="@id/btn_select_date"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_desc"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_edit"
+                tools:ignore="ContentDescription" />
+
+            <EditText
+                android:id="@+id/et_desc"
+                style="@style/TextBody16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:hint="@string/hint_desc"
+                android:inputType="textShortMessage"
+                app:layout_constraintBottom_toBottomOf="@id/img_desc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/img_desc"
+                app:layout_constraintTop_toTopOf="@id/img_desc" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_save"
+        style="@style/TextButton16"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/save"
+        android:enabled="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

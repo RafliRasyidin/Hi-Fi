@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/activity_on_boarding_scene"
+    tools:context=".presentation.on_boarding.OnBoardingActivity">
+
+    <ImageView
+        android:id="@+id/img_on_boarding_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".8"
+        app:srcCompat="@drawable/ic_on_boarding_1"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/img_on_boarding_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".8"
+        app:srcCompat="@drawable/ic_on_boarding_2"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/img_on_boarding_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".8"
+        app:srcCompat="@drawable/ic_on_boarding_3"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tv_title_1"
+        style="@style/TextTitle20"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/title_on_boarding_1"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_on_boarding_1" />
+
+    <TextView
+        android:id="@+id/tv_title_2"
+        style="@style/TextTitle20"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/title_on_boarding_2"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_on_boarding_2" />
+
+    <TextView
+        android:id="@+id/tv_title_3"
+        style="@style/TextTitle20"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/title_on_boarding_3"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_on_boarding_3" />
+
+    <TextView
+        android:id="@+id/tv_body_1"
+        style="@style/TextBody16"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/body_on_boarding_1"
+        android:textAlignment="center"
+        android:textColor="@color/color_gray500"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title_1"
+        app:layout_constraintStart_toStartOf="@+id/tv_title_1"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_1" />
+
+    <TextView
+        android:id="@+id/tv_body_2"
+        style="@style/TextBody16"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/body_on_boarding_2"
+        android:textAlignment="center"
+        android:textColor="@color/color_gray500"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title_2"
+        app:layout_constraintStart_toStartOf="@+id/tv_title_2"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_2" />
+
+    <TextView
+        android:id="@+id/tv_body_3"
+        style="@style/TextBody16"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/body_on_boarding_3"
+        android:textAlignment="center"
+        android:textColor="@color/color_gray500"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title_3"
+        app:layout_constraintStart_toStartOf="@+id/tv_title_3"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_3" />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/img_tab_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:altSrc="@drawable/ic_tab"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toStartOf="@id/img_tab_2"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_body_1"
+        app:layout_constraintWidth_percent=".03"
+        app:srcCompat="@drawable/ic_tab_active" />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/img_tab_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:altSrc="@drawable/ic_tab_active"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toStartOf="@id/img_tab_3"
+        app:layout_constraintStart_toEndOf="@id/img_tab_1"
+        app:layout_constraintTop_toBottomOf="@id/tv_body_1"
+        app:layout_constraintWidth_percent=".03"
+        app:srcCompat="@drawable/ic_tab" />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/img_tab_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:altSrc="@drawable/ic_tab_active"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/img_tab_2"
+        app:layout_constraintTop_toBottomOf="@id/tv_body_1"
+        app:layout_constraintWidth_percent=".03"
+        app:srcCompat="@drawable/ic_tab" />
+
+    <TextView
+        android:id="@+id/tv_next"
+        style="@style/TextMedium16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next"
+        android:textColor="@color/color_primary500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

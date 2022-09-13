@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.rasyidin.hi_fi.presentation.home.MainActivity">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:title="@string/home_fragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_home" />
+
+    <item
+        android:id="@+id/reportFragment"
+        android:title="@string/report_fragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_report" />
+
+    <item
+        android:title=""
+        android:enabled="true" />
+
+    <item
+        android:id="@+id/anggaranFragment"
+        android:title="@string/anggaran_fragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_budget" />
+
+    <item
+        android:id="@+id/targetFragment"
+        android:title="@string/target_fragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_target" />
+</menu>

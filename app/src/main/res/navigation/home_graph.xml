@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.rasyidin.hi_fi.presentation.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_addTransactionFragment"
+            app:destination="@id/addTransactionFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/slide_up"
+            app:popExitAnim="@anim/slide_down" />
+        <action
+            android:id="@+id/action_homeFragment_to_balanceActivity"
+            app:destination="@id/balanceActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="com.rasyidin.hi_fi.presentation.report.ReportFragment"
+        android:label="fragment_report"
+        tools:layout="@layout/fragment_report">
+        <action
+            android:id="@+id/action_reportFragment_to_addTransactionFragment"
+            app:destination="@id/addTransactionFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/slide_up"
+            app:popExitAnim="@anim/slide_down" />
+    </fragment>
+    <fragment
+        android:id="@+id/anggaranFragment"
+        android:name="com.rasyidin.hi_fi.presentation.anggaran.AnggaranFragment"
+        android:label="fragment_anggaran"
+        tools:layout="@layout/fragment_anggaran">
+        <action
+            android:id="@+id/action_anggaranFragment_to_addTransactionFragment"
+            app:destination="@id/addTransactionFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/slide_up"
+            app:popExitAnim="@anim/slide_down" />
+    </fragment>
+    <fragment
+        android:id="@+id/targetFragment"
+        android:name="com.rasyidin.hi_fi.presentation.target.TargetFragment"
+        android:label="fragment_target"
+        tools:layout="@layout/fragment_target">
+        <action
+            android:id="@+id/action_targetFragment_to_addTransactionFragment"
+            app:destination="@id/addTransactionFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/slide_up"
+            app:popExitAnim="@anim/slide_down" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTransactionFragment"
+        android:name="com.rasyidin.hi_fi.presentation.transaction.AddTransactionFragment"
+        android:label="fragment_add_transaction"
+        tools:layout="@layout/fragment_add_transaction" />
+    <activity
+        android:id="@+id/balanceActivity"
+        android:name="com.rasyidin.hi_fi.presentation.home.saldo.BalanceActivity"
+        android:label="activity_balance"
+        tools:layout="@layout/activity_balance" />
+</navigation>

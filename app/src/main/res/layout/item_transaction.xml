@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/white"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp"
+    app:strokeWidth="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/bg_icon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".15"
+            tools:backgroundTint="#408797EE" />
+
+        <ImageView
+            android:id="@+id/img_transaction"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:elevation="1dp"
+            app:layout_constraintBottom_toBottomOf="@id/bg_icon"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toEndOf="@id/bg_icon"
+            app:layout_constraintStart_toStartOf="@id/bg_icon"
+            app:layout_constraintTop_toTopOf="@id/bg_icon"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_tagihan" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            style="@style/TextTitle18"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_desc"
+            app:layout_constraintEnd_toStartOf="@+id/tv_date"
+            app:layout_constraintStart_toEndOf="@id/bg_icon"
+            app:layout_constraintTop_toTopOf="@id/bg_icon"
+            tools:text="Rp 200.000" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/TextBody12"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/color_gray500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Hari ini" />
+
+        <TextView
+            android:id="@+id/tv_desc"
+            style="@style/TextBody14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/bg_icon"
+            app:layout_constraintStart_toStartOf="@id/tv_price"
+            app:layout_constraintTop_toBottomOf="@id/tv_price"
+            tools:text="Indihome" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circle_decor"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:src="@color/color_gray500"
+            app:layout_constraintBottom_toBottomOf="@id/tv_desc"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintStart_toEndOf="@id/tv_desc"
+            app:layout_constraintTop_toTopOf="@id/tv_desc"
+            app:layout_constraintWidth_percent=".015" />
+
+        <TextView
+            android:id="@+id/tv_type_transaction"
+            style="@style/TextBody14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/color_gray500"
+            app:layout_constraintBottom_toBottomOf="@id/tv_desc"
+            app:layout_constraintStart_toEndOf="@id/circle_decor"
+            app:layout_constraintTop_toTopOf="@id/tv_desc"
+            tools:text="Gopay" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

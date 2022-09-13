@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.home.saldo.AddSourceBalanceFragment">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_container" />
+
+    <View
+        android:id="@+id/bg_icon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_icon"
+        android:backgroundTint="@color/bg_green"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <ImageView
+        android:id="@+id/img_income"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="32dp"
+        app:layout_constraintBottom_toBottomOf="@id/bg_icon"
+        app:layout_constraintEnd_toEndOf="@id/bg_icon"
+        app:layout_constraintStart_toStartOf="@id/bg_icon"
+        app:layout_constraintTop_toTopOf="@id/bg_icon"
+        app:srcCompat="@drawable/ic_cash"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tv_choose_icon"
+        style="@style/TextBody15"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/choose_icon"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@id/bg_icon"
+        app:layout_constraintStart_toStartOf="@id/bg_icon"
+        app:layout_constraintTop_toBottomOf="@id/bg_icon" />
+
+    <TextView
+        android:id="@+id/tv_name_account"
+        style="@style/TextTitle18"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/account_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_choose_icon" />
+
+    <EditText
+        android:id="@+id/et_name_account"
+        style="@style/TextBody16"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/hint_account_name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_name_account"
+        app:layout_constraintTop_toBottomOf="@id/tv_name_account" />
+
+    <TextView
+        android:id="@+id/tv_nominal"
+        style="@style/TextTitle18"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/jumlah_saldo"
+        app:layout_constraintEnd_toEndOf="@id/tv_name_account"
+        app:layout_constraintStart_toStartOf="@id/tv_name_account"
+        app:layout_constraintTop_toBottomOf="@id/et_name_account" />
+
+    <com.cottacush.android.currencyedittext.CurrencyEditText
+        android:id="@+id/et_nominal"
+        style="@style/TextBody16"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_nominal"
+        android:inputType="number"
+        android:ems="10"
+        app:currencySymbol="Rp"
+        app:layout_constraintEnd_toEndOf="@id/tv_nominal"
+        app:layout_constraintStart_toStartOf="@id/tv_nominal"
+        app:layout_constraintTop_toBottomOf="@id/tv_nominal"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_save"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/save"
+        android:enabled="false"
+        style="@style/TextButton16"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
