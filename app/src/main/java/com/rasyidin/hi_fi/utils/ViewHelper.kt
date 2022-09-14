@@ -2,6 +2,7 @@ package com.rasyidin.hi_fi.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.text.format.DateUtils
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -13,12 +14,14 @@ import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-const val NORMAL_DATE_TIME_FORMAT = "dd MMMM yyyy"
-const val DEFAULT_DATE_TIME_FORMAT = "yyyy-MM-dd"
+const val NORMAL_DATE_FORMAT = "dd MMM yyyy"
+const val DEFAULT_DATE_FORMAT = "yyyy-MM-dd"
 const val DEFAULT_TIME_FORMAT = "HH:mm:ss"
+const val DEFAULT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss"
 
 fun hideBotNav(context: Context) {
-    val botNav = (context as AppCompatActivity).findViewById<BottomNavigationView>(R.id.bot_nav_view)
+    val botNav =
+        (context as AppCompatActivity).findViewById<BottomNavigationView>(R.id.bot_nav_view)
     val fabAdd = context.findViewById<FloatingActionButton>(R.id.fab_add)
     val fabBackground = context.findViewById<View>(R.id.fab_bg)
     botNav.visibility = View.GONE
@@ -27,7 +30,8 @@ fun hideBotNav(context: Context) {
 }
 
 fun showBotNav(context: Context) {
-    val botNav = (context as AppCompatActivity).findViewById<BottomNavigationView>(R.id.bot_nav_view)
+    val botNav =
+        (context as AppCompatActivity).findViewById<BottomNavigationView>(R.id.bot_nav_view)
     val fabAdd = context.findViewById<FloatingActionButton>(R.id.fab_add)
     val fabBackground = context.findViewById<View>(R.id.fab_bg)
     botNav.visibility = View.VISIBLE
@@ -60,14 +64,25 @@ fun formatRupiah(number: Long): String {
         formatter.format(number)
     } catch (e: Exception) {
         e.printStackTrace()
-        ""
+        number.toString()
+    }
+}
+
+fun isToday(currentDateString: String): Boolean {
+    return try {
+        val simpleDateFormat = SimpleDateFormat(DEFAULT_DATE_TIME_FORMAT, Locale.getDefault())
+        val currentDate = simpleDateFormat.parse(currentDateString)
+        DateUtils.isToday(currentDate.time)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        false
     }
 }
 
 @SuppressLint("SimpleDateFormat")
 fun String.toDateFormat(toFormat: String = "dd MMM yyy HH:mm"): String {
     return try {
-        val idf = SimpleDateFormat(DEFAULT_DATE_TIME_FORMAT, Locale("IND", "ID")).parse(this)
+        val idf = SimpleDateFormat(DEFAULT_DATE_FORMAT, Locale("IND", "ID")).parse(this)
         SimpleDateFormat(toFormat).format(idf!!)
     } catch (e: Exception) {
         e.printStackTrace()
@@ -76,7 +91,7 @@ fun String.toDateFormat(toFormat: String = "dd MMM yyy HH:mm"): String {
     }
 }
 
-fun getCurrentDate(pattern: String = NORMAL_DATE_TIME_FORMAT): String {
+fun getCurrentDate(pattern: String = NORMAL_DATE_FORMAT): String {
     return try {
         val sdf = SimpleDateFormat(pattern, Locale("IND", "ID"))
         sdf.format(Date())
