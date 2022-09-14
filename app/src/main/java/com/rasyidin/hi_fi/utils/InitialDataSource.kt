@@ -11,7 +11,7 @@ object InitialDataSource {
                 0,
                 context.getString(R.string.cash),
                 0,
-                getCurrentDate(DEFAULT_DATE_TIME_FORMAT),
+                getCurrentDate(DEFAULT_DATE_FORMAT),
                 R.drawable.ic_cash,
                 R.color.bg_green
             )
