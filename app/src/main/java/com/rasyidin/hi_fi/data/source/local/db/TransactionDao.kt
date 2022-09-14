@@ -17,6 +17,6 @@ interface TransactionDao {
     suspend fun deleteTransaction(transactionEntity: TransactionEntity)
 
     @Transaction
-    @Query("SELECT * FROM transactionEntity")
+    @Query("SELECT * FROM transactionEntity ORDER BY date DESC LIMIT 5")
     suspend fun getTransactions(): List<SourceBalanceAndTransactionRelation>
 }
