@@ -8,21 +8,21 @@ import com.rasyidin.hi_fi.domain.model.transaction.Transaction
 @Entity(tableName = "transactionEntity")
 data class TransactionEntity(
     @PrimaryKey(true)
-    var id: Int? = null,
+    var transactionId: Int? = null,
     var nominal: Long? = null,
     var date: String? = null,
     var description: String? = null,
     var idTypeTransaction: TransactionCategorize = TransactionCategorize.OUTCOME,
     var categoryId: Int? = null,
-    var sourceAccountId: Int? = null
+    var sId: Int? = null
 ) {
     fun toDomain() = Transaction(
-        id = id,
+        id = transactionId,
         nominal = nominal,
         date = date,
         description = description,
         idTypeTransaction = idTypeTransaction,
         categoryId = categoryId,
-        sourceAccountId = sourceAccountId
+        sId = sId
     )
 }

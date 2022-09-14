@@ -6,20 +6,20 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class SourceBalance(
-    var id: Int? = null,
+    var sourceId: Int? = null,
     var name: String? = null,
     var balance: Long? = null,
     var updateAt: String? = null,
     var iconPath: Int? = null,
-    var bgColor: Int? = null
+    var bgColor: Int? = null,
 ) : Parcelable {
     fun toEntity() = SourceBalanceEntity(
-        id,
+        sourceId,
         name,
         balance,
         updateAt,
         iconPath,
-        bgColor
+        bgColor,
     )
 }
 

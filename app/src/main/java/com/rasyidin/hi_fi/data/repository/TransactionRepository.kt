@@ -1,7 +1,9 @@
 package com.rasyidin.hi_fi.data.repository
 
+import com.rasyidin.hi_fi.data.source.local.entity.SourceBalanceAndTransactionRelation
 import com.rasyidin.hi_fi.data.source.local.entity.TransactionEntity
 import com.rasyidin.hi_fi.domain.ResultState
+import com.rasyidin.hi_fi.domain.model.transaction.SourceBalanceAndTransaction
 import kotlinx.coroutines.flow.Flow
 
 interface TransactionRepository {
@@ -12,5 +14,5 @@ interface TransactionRepository {
 
     suspend fun deleteTransaction(transactionEntity: TransactionEntity)
 
-    suspend fun getTransactions(): Flow<ResultState<List<TransactionEntity>>>
+    suspend fun getTransactions(): Flow<ResultState<List<SourceBalanceAndTransactionRelation>>>
 }

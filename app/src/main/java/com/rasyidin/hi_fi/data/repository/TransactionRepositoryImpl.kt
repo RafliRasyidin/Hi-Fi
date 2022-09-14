@@ -1,9 +1,11 @@
 package com.rasyidin.hi_fi.data.repository
 
 import com.rasyidin.hi_fi.data.source.local.db.TransactionDao
+import com.rasyidin.hi_fi.data.source.local.entity.SourceBalanceAndTransactionRelation
 import com.rasyidin.hi_fi.data.source.local.entity.TransactionEntity
 import com.rasyidin.hi_fi.domain.ResultState
 import com.rasyidin.hi_fi.domain.fetch
+import com.rasyidin.hi_fi.domain.model.transaction.SourceBalanceAndTransaction
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -22,7 +24,7 @@ class TransactionRepositoryImpl @Inject constructor(private val dao: Transaction
         dao.deleteTransaction(transactionEntity)
     }
 
-    override suspend fun getTransactions(): Flow<ResultState<List<TransactionEntity>>> {
+    override suspend fun getTransactions(): Flow<ResultState<List<SourceBalanceAndTransactionRelation>>> {
         return fetch {
             dao.getTransactions()
         }

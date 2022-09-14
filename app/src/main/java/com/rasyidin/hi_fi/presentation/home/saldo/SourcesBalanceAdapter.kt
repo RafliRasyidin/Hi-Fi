@@ -17,7 +17,7 @@ class SourcesBalanceAdapter :
     companion object {
         private val diffCallback = object : DiffUtil.ItemCallback<SourceBalance>() {
             override fun areItemsTheSame(oldItem: SourceBalance, newItem: SourceBalance): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.sourceId == newItem.sourceId
             }
 
             override fun areContentsTheSame(

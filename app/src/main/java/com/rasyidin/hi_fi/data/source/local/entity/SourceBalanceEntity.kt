@@ -7,19 +7,19 @@ import com.rasyidin.hi_fi.domain.model.balance.SourceBalance
 @Entity(tableName = "sourceBalance")
 data class SourceBalanceEntity(
     @PrimaryKey(true)
-    val id: Int? = null,
+    val sourceId: Int? = null,
     val sourceBalanceName: String? = null,
     val balance: Long? = null,
     val updateAt: String? = null,
     val iconPath: Int? = null,
-    val bgColor: Int? = null
+    val bgColor: Int? = null,
 ) {
     fun toDomain() = SourceBalance(
-        id,
+        sourceId,
         sourceBalanceName,
         balance,
         updateAt,
         iconPath,
-        bgColor
+        bgColor,
     )
 }
