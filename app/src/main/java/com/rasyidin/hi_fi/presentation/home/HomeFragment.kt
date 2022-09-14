@@ -1,14 +1,12 @@
 package com.rasyidin.hi_fi.presentation.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.rasyidin.hi_fi.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.rasyidin.hi_fi.databinding.FragmentHomeBinding
 import com.rasyidin.hi_fi.domain.onSuccess
 import com.rasyidin.hi_fi.presentation.component.FragmentBinding
@@ -24,10 +22,16 @@ class HomeFragment : FragmentBinding<FragmentHomeBinding>(FragmentHomeBinding::i
 
     private var totalBalance = 0L
 
+    private lateinit var transactionAdapter: HistoryTransactionAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupAdapterHistoryTransaction()
+
         observeSourceBalance()
+
+        observeHistoriesTransaction()
 
         onClickView()
     }
@@ -35,6 +39,7 @@ class HomeFragment : FragmentBinding<FragmentHomeBinding>(FragmentHomeBinding::i
     override fun onResume() {
         super.onResume()
         viewModel.getSourcesBalance()
+        viewModel.getHistoriesTransaction()
         showBotNav(requireActivity())
     }
 
@@ -47,6 +52,26 @@ class HomeFragment : FragmentBinding<FragmentHomeBinding>(FragmentHomeBinding::i
                         totalBalance += sourceBalance.balance ?: 0
                     }
                     binding.tvSaldo.text = formatRupiah(totalBalance)
+                }
+            }
+        }
+    }
+
+    private fun setupAdapterHistoryTransaction() {
+        transactionAdapter = HistoryTransactionAdapter()
+        binding.rvRecentActivities.apply {
+            layoutManager = LinearLayoutManager(requireActivity())
+            adapter = transactionAdapter
+        }
+    }
+
+    private fun observeHistoriesTransaction() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.historiesTransaction.collect { resultState ->
+                resultState.onSuccess { sourceBalanceAndTransaction ->
+                    transactionAdapter.submitList(sourceBalanceAndTransaction)
+                    Log.d("TransactionHistory", sourceBalanceAndTransaction.toString())
+                    Log.d("TransactionHistory", sourceBalanceAndTransaction?.size.toString())
                 }
             }
         }
