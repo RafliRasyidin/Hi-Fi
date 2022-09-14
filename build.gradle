@@ -8,7 +8,7 @@ buildscript {
         shimmerVersion = '0.5.0'
         lottieVersion = '5.1.1'
         glideVersion = '4.13.2'
-        navigationVersion = '2.5.1'
+        navigationVersion = '2.5.2'
         circleImageVersion = "3.1.0"
         cameraxVersion = '1.1.0-rc01'
 
@@ -18,7 +18,7 @@ buildscript {
         lifecycleVersion = '2.5.1'
         retrofitVersion = '2.9.0'
         okhttpVersion = '4.9.3'
-        roomVersion = '2.5.0-alpha02'
+        roomVersion = '2.5.0-alpha03'
         dataStoreVersion = '1.0.0'
         coroutinesVersion = '1.6.1'
     }
