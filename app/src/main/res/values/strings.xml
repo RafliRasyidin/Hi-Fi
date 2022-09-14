@@ -61,4 +61,5 @@
     <string name="desc_delete_source_balance">Apakah anda yakin ingin menghapus akun ini?</string>
     <string name="transfer">Transfer</string>
     <string name="savings">Tabungan</string>
+    <string name="today">Hari ini</string>
 </resources>
