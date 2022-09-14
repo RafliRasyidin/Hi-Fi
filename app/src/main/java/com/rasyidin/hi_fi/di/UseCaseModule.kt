@@ -33,12 +33,13 @@ class UseCaseModule {
         )
 
     @Provides
-    fun providesTransactionUseCase(repository: TransactionRepository): UseCaseTransaction =
+    fun providesTransactionUseCase(repository: TransactionRepository, repositorySourceBalance: BalanceRepository): UseCaseTransaction =
         UseCaseTransaction(
             AddTransaction(repository),
             EditTransaction(repository),
             DeleteTransaction(repository),
-            GetTransactions(repository)
+            GetTransactions(repository),
+            GetSourceBalance(repositorySourceBalance)
         )
 
 }
