@@ -63,7 +63,7 @@ fun generateSourceBalanceExisting(data: List<SourceBalance>?): List<Category> {
     sourceBalanceExisting.apply {
         data?.forEach { sourceBalance ->
             add(Category(
-                id = sourceBalance.id ?: 0,
+                id = sourceBalance.sourceId ?: 0,
                 bgColor = sourceBalance.bgColor ?: 0,
                 imageCategory = sourceBalance.iconPath ?: 0,
                 nameString = sourceBalance.name
