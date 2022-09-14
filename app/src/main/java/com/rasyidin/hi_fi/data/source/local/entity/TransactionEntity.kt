@@ -4,7 +4,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.rasyidin.hi_fi.domain.model.balance.TransactionCategorize
 import com.rasyidin.hi_fi.domain.model.transaction.Transaction
-import java.sql.Date
 
 @Entity(tableName = "transactionEntity")
 data class TransactionEntity(
@@ -15,8 +14,7 @@ data class TransactionEntity(
     var description: String? = null,
     var idTypeTransaction: TransactionCategorize = TransactionCategorize.OUTCOME,
     var categoryId: Int? = null,
-    var sourceAccount: String? = null,
-    var destinationAccount: String? = null
+    var sourceAccountId: Int? = null
 ) {
     fun toDomain() = Transaction(
         id = id,
@@ -24,6 +22,7 @@ data class TransactionEntity(
         date = date,
         description = description,
         idTypeTransaction = idTypeTransaction,
-        categoryId = categoryId
+        categoryId = categoryId,
+        sourceAccountId = sourceAccountId
     )
 }
