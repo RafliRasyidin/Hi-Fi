@@ -7,7 +7,9 @@ import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.datepicker.CalendarConstraints
@@ -16,10 +18,13 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.datepicker.MaterialDatePicker.todayInUtcMilliseconds
 import com.rasyidin.hi_fi.R
 import com.rasyidin.hi_fi.databinding.FragmentAddTransactionBinding
+import com.rasyidin.hi_fi.domain.model.balance.SourceBalance
 import com.rasyidin.hi_fi.domain.model.balance.TransactionCategorize
 import com.rasyidin.hi_fi.domain.model.balance.TransactionCategorize.*
 import com.rasyidin.hi_fi.domain.model.transaction.Transaction
+import com.rasyidin.hi_fi.domain.onSuccess
 import com.rasyidin.hi_fi.presentation.component.BotSheetCategoryFragment
+import com.rasyidin.hi_fi.presentation.component.BotSheetCategoryFragment.CategoryBotSheet.SOURCE_BALANCE_EXISTING
 import com.rasyidin.hi_fi.presentation.component.BotSheetCategoryFragment.CategoryBotSheet.TRANSACTION
 import com.rasyidin.hi_fi.presentation.component.FragmentBinding
 import com.rasyidin.hi_fi.utils.*
@@ -39,11 +44,15 @@ class AddTransactionFragment :
 
     private var state: TransactionCategorize = OUTCOME
 
-    private var dateTime = getCurrentDate()
+    private var dateTime = getCurrentDate(DEFAULT_DATE_TIME_FORMAT) + " ${getCurrentTime()}"
 
     private lateinit var botSheetCategory: BotSheetCategoryFragment
 
     private val viewModel: TransactionViewModel by activityViewModels()
+
+    private var sourceBalances = listOf<SourceBalance>()
+
+    private var sourceAccountId: Int = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,6 +60,8 @@ class AddTransactionFragment :
         setupToolbar()
 
         binding.tvSelectDate.text = getCurrentDate()
+
+        observeSourceBalance()
 
         observeTextChange()
 
@@ -82,10 +93,10 @@ class AddTransactionFragment :
                 findNavController().popBackStack()
             }
             btnTypeTransaction.setOnClickListener {
-                showBotSheetCategory()
+                showBotSheetCategory(TRANSACTION)
             }
             btnTypeSource.setOnClickListener {
-
+                showBotSheetCategory(SOURCE_BALANCE_EXISTING)
             }
             btnSelectDate.setOnClickListener {
                 pickDate()
@@ -117,13 +128,46 @@ class AddTransactionFragment :
             }
 
             override fun onTextChanged(text: CharSequence, p1: Int, p2: Int, p3: Int) {
-                binding.btnSave.isEnabled = text.isNotEmpty()
+                binding.btnSave.isEnabled = text.length > 2
             }
 
             override fun afterTextChanged(p0: Editable?) {
 
             }
         })
+    }
+
+    private fun observeSourceBalance() {
+        viewModel.getSourceBalance()
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.sourceBalance.collect { result ->
+                    result.onSuccess { data ->
+                        if (data != null) {
+                            sourceBalances = data
+                            val sourceBalance = sourceBalances.first()
+                            sourceAccountId = sourceBalance.id ?: 0
+                            binding.apply {
+                                tvTypeSource.text = sourceBalance.name
+                                imgTypeSource.setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                        requireActivity(),
+                                        sourceBalance.iconPath!!
+                                    )
+                                )
+                                bgIconSource.setCardBackgroundColor(
+                                    ContextCompat.getColor(
+                                        requireActivity(),
+                                        sourceBalance.bgColor!!
+                                    )
+                                )
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun saveTransaction() {
@@ -134,11 +178,11 @@ class AddTransactionFragment :
             description = description,
             date = dateTime,
             idTypeTransaction = state,
-            categoryId = categoryId
+            categoryId = categoryId,
+            sourceAccountId = sourceAccountId
         )
-        lifecycleScope.launch {
-            viewModel.addTransaction(transaction)
-        }
+        viewModel.addTransaction(transaction)
+        findNavController().popBackStack()
     }
 
     private fun setupToolbar() {
@@ -153,26 +197,47 @@ class AddTransactionFragment :
         }
     }
 
-    private fun showBotSheetCategory() {
-        botSheetCategory = BotSheetCategoryFragment.newInstance(TRANSACTION, isOutcome)
+    private fun showBotSheetCategory(categoryBotSheet: BotSheetCategoryFragment.CategoryBotSheet) {
+        botSheetCategory = if (categoryBotSheet == SOURCE_BALANCE_EXISTING) {
+            BotSheetCategoryFragment.newInstance(categoryBotSheet, sourceBalances)
+        } else {
+            BotSheetCategoryFragment.newInstance(categoryBotSheet, isOutcome)
+        }
         botSheetCategory.showNow(childFragmentManager, BotSheetCategoryFragment.TAG)
         botSheetCategory.onItemClickCallback = { category ->
             binding.apply {
                 with(category) {
-                    categoryId = id
-                    bgIcon.setCardBackgroundColor(
-                        ContextCompat.getColor(
-                            requireActivity(),
-                            bgColor
+                    if (categoryBotSheet == SOURCE_BALANCE_EXISTING) {
+                        sourceAccountId = id
+                        bgIconSource.setCardBackgroundColor(
+                            ContextCompat.getColor(
+                                requireActivity(),
+                                bgColor
+                            )
                         )
-                    )
-                    imgTypeTransaction.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            requireActivity(),
-                            imageCategory
+                        imgTypeSource.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                requireActivity(),
+                                imageCategory
+                            )
                         )
-                    )
-                    tvTypeTransaction.text = getString(name)
+                        tvTypeSource.text = nameString
+                    } else {
+                        categoryId = id
+                        bgIcon.setCardBackgroundColor(
+                            ContextCompat.getColor(
+                                requireActivity(),
+                                bgColor
+                            )
+                        )
+                        imgTypeTransaction.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                requireActivity(),
+                                imageCategory
+                            )
+                        )
+                        tvTypeTransaction.text = getString(name ?: 0)
+                    }
                 }
             }
         }
@@ -191,7 +256,8 @@ class AddTransactionFragment :
         datePicker.addOnPositiveButtonClickListener { selection ->
             val utc = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
             utc.timeInMillis = selection
-            dateTime = SimpleDateFormat(DEFAULT_DATE_TIME_FORMAT, Locale.getDefault()).format(utc.time)
+            dateTime =
+                SimpleDateFormat(DEFAULT_DATE_TIME_FORMAT, Locale.getDefault()).format(utc.time)
             binding.tvSelectDate.text = dateTime.toDateFormat(NORMAL_DATE_TIME_FORMAT)
             dateTime += " ${getCurrentTime()}"
             Log.d("AddTransaction", dateTime)
