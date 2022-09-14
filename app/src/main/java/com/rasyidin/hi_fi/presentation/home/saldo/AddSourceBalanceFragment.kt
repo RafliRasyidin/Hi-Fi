@@ -17,7 +17,7 @@ import com.rasyidin.hi_fi.presentation.component.BotSheetCategoryFragment
 import com.rasyidin.hi_fi.presentation.component.BotSheetCategoryFragment.CategoryBotSheet.SOURCE_BALANCE
 import com.rasyidin.hi_fi.presentation.component.FragmentBinding
 import com.rasyidin.hi_fi.presentation.home.saldo.BalanceFragment.Companion.REQUEST_UPDATE
-import com.rasyidin.hi_fi.utils.DEFAULT_DATE_TIME_FORMAT
+import com.rasyidin.hi_fi.utils.DEFAULT_DATE_FORMAT
 import com.rasyidin.hi_fi.utils.clearFormatCurrency
 import com.rasyidin.hi_fi.utils.getCurrentDate
 import dagger.hilt.android.AndroidEntryPoint
@@ -104,7 +104,7 @@ class AddSourceBalanceFragment :
                 sourceBalance.apply {
                     balance = nominal.toLong()
                     name = sourceBalanceName
-                    updateAt = getCurrentDate(DEFAULT_DATE_TIME_FORMAT)
+                    updateAt = getCurrentDate(DEFAULT_DATE_FORMAT)
                 }
                 if (navArgs.requestUpdate == REQUEST_UPDATE) {
                     viewModel.updateSourceBalance(sourceBalance)
