@@ -2,6 +2,7 @@ package com.rasyidin.hi_fi.presentation.component
 
 import android.app.Dialog
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.rasyidin.hi_fi.databinding.BotSheetCategoryBinding
-import com.rasyidin.hi_fi.domain.model.balance.Category
-import com.rasyidin.hi_fi.domain.model.balance.generateIncomeCategories
-import com.rasyidin.hi_fi.domain.model.balance.generateOutcomeCategories
+import com.rasyidin.hi_fi.domain.model.balance.*
 import com.rasyidin.hi_fi.presentation.transaction.CategoryAdapter
 
 class BotSheetCategoryFragment : BottomSheetDialogFragment() {
@@ -25,6 +24,8 @@ class BotSheetCategoryFragment : BottomSheetDialogFragment() {
 
     private var isShowOutcome = false
     private lateinit var categoryBotSheet: CategoryBotSheet
+
+    private lateinit var sourceBalanceExisting: List<SourceBalance>
 
     private var title = ""
 
@@ -48,10 +49,7 @@ class BotSheetCategoryFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        isShowOutcome = arguments?.getBoolean(ARG_CATEGORY) ?: false
-        categoryBotSheet = (arguments?.getSerializable(ARG_CATEGORY_BOT_SHEET)
-            ?: CategoryBotSheet.TRANSACTION) as CategoryBotSheet
-        title = arguments?.getString(ARG_TITLE) ?: ""
+        initArguments()
 
         if (title.isNotEmpty()) {
             binding.labelCategory.text = title
@@ -60,6 +58,14 @@ class BotSheetCategoryFragment : BottomSheetDialogFragment() {
         setupAdapter()
 
         onViewClick()
+    }
+
+    private fun initArguments() {
+        isShowOutcome = arguments?.getBoolean(ARG_CATEGORY) ?: false
+        categoryBotSheet = (arguments?.getSerializable(ARG_CATEGORY_BOT_SHEET)
+            ?: CategoryBotSheet.TRANSACTION) as CategoryBotSheet
+        title = arguments?.getString(ARG_TITLE) ?: ""
+        sourceBalanceExisting = arguments?.getParcelableArrayList(ARG_SOURCE_BALANCE) ?: emptyList()
     }
 
     private fun setFullHeight() {
@@ -91,6 +97,11 @@ class BotSheetCategoryFragment : BottomSheetDialogFragment() {
                 categoryAdapter = CategoryAdapter(false)
                 val sourceBalanceCategories = generateIncomeCategories()
                 categoryAdapter.submitList(sourceBalanceCategories)
+            }
+            CategoryBotSheet.SOURCE_BALANCE_EXISTING -> {
+                categoryAdapter = CategoryAdapter()
+                val sourceBalanceMapped = generateSourceBalanceExisting(sourceBalanceExisting)
+                categoryAdapter.submitList(sourceBalanceMapped)
             }
         }
         binding.rvCategory.apply {
@@ -130,14 +141,33 @@ class BotSheetCategoryFragment : BottomSheetDialogFragment() {
             return botSheet
         }
 
+        @JvmStatic
+        fun newInstance(
+            category: CategoryBotSheet,
+            sourceBalanceExisting: List<SourceBalance>
+        ): BotSheetCategoryFragment {
+            val botSheet = BotSheetCategoryFragment()
+            val bundle = Bundle().apply {
+                putSerializable(ARG_CATEGORY_BOT_SHEET, category)
+                putParcelableArrayList(
+                    ARG_SOURCE_BALANCE,
+                    sourceBalanceExisting as ArrayList<out Parcelable>
+                )
+            }
+            botSheet.arguments = bundle
+            return botSheet
+        }
+
         const val ARG_CATEGORY_BOT_SHEET = "argCategoryBotSheet"
         const val TAG = "BotSheetCategoryFragment"
         const val ARG_CATEGORY = "argCategory"
         const val ARG_TITLE = "argTitle"
+        const val ARG_SOURCE_BALANCE = "argSourceBalance"
     }
 
     enum class CategoryBotSheet {
         TRANSACTION,
-        SOURCE_BALANCE
+        SOURCE_BALANCE,
+        SOURCE_BALANCE_EXISTING
     }
 }
