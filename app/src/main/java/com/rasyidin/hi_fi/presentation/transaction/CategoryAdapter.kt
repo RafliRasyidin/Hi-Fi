@@ -21,7 +21,7 @@ class CategoryAdapter(private val showWithName: Boolean = true) : ListAdapter<Ca
             binding.apply {
                 imgCategory.setImageDrawable(ContextCompat.getDrawable(context, item.imageCategory))
                 cardCategory.setCardBackgroundColor(ContextCompat.getColor(context, item.bgColor))
-                tvName.text = context.getString(item.name)
+                tvName.text = if (item.name != null) context.getString(item.name!!) else item.nameString
                 tvName.isVisible = showWithName
             }
         }
