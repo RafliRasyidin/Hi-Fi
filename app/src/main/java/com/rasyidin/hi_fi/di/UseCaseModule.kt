@@ -7,6 +7,7 @@ import com.rasyidin.hi_fi.domain.usecase.auth.GetStateOnBoarding
 import com.rasyidin.hi_fi.domain.usecase.auth.SetStateOnBoarding
 import com.rasyidin.hi_fi.domain.usecase.auth.UseCaseAuth
 import com.rasyidin.hi_fi.domain.usecase.balance.*
+import com.rasyidin.hi_fi.domain.usecase.home.UseCaseHome
 import com.rasyidin.hi_fi.domain.usecase.transaction.*
 import dagger.Module
 import dagger.Provides
@@ -40,6 +41,13 @@ class UseCaseModule {
             DeleteTransaction(repository),
             GetTransactions(repository),
             GetSourceBalance(repositorySourceBalance)
+        )
+
+    @Provides
+    fun providesHomeUseCase(transactionRepository: TransactionRepository, sourceBalanceRepository: BalanceRepository): UseCaseHome =
+        UseCaseHome(
+            GetTransactions(transactionRepository),
+            GetSourceBalance(sourceBalanceRepository)
         )
 
 }
