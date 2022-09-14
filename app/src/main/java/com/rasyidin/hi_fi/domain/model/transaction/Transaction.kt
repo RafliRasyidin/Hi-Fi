@@ -11,8 +11,7 @@ data class Transaction(
     var description: String? = null,
     var idTypeTransaction: TransactionCategorize = TransactionCategorize.OUTCOME,
     var categoryId: Int? = null,
-    var sourceAccount: String? = null,
-    var destinationAccount: String? = null
+    var sourceAccountId: Int? = null
 ) {
     fun toEntity() = TransactionEntity(
         id = id,
@@ -21,7 +20,6 @@ data class Transaction(
         description = description,
         idTypeTransaction = idTypeTransaction,
         categoryId = categoryId,
-        sourceAccount = sourceAccount,
-        destinationAccount = destinationAccount
+        sourceAccountId = sourceAccountId
     )
 }
