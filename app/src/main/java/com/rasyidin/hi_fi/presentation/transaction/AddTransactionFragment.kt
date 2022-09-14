@@ -44,7 +44,7 @@ class AddTransactionFragment :
 
     private var state: TransactionCategorize = OUTCOME
 
-    private var dateTime = getCurrentDate(DEFAULT_DATE_TIME_FORMAT) + " ${getCurrentTime()}"
+    private var dateTime = getCurrentDate(DEFAULT_DATE_FORMAT) + " ${getCurrentTime()}"
 
     private lateinit var botSheetCategory: BotSheetCategoryFragment
 
@@ -146,7 +146,7 @@ class AddTransactionFragment :
                         if (data != null) {
                             sourceBalances = data
                             val sourceBalance = sourceBalances.first()
-                            sourceAccountId = sourceBalance.id ?: 0
+                            sourceAccountId = sourceBalance.sourceId ?: 0
                             binding.apply {
                                 tvTypeSource.text = sourceBalance.name
                                 imgTypeSource.setImageDrawable(
@@ -179,7 +179,7 @@ class AddTransactionFragment :
             date = dateTime,
             idTypeTransaction = state,
             categoryId = categoryId,
-            sourceAccountId = sourceAccountId
+            sId = sourceAccountId
         )
         viewModel.addTransaction(transaction)
         findNavController().popBackStack()
@@ -257,8 +257,8 @@ class AddTransactionFragment :
             val utc = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
             utc.timeInMillis = selection
             dateTime =
-                SimpleDateFormat(DEFAULT_DATE_TIME_FORMAT, Locale.getDefault()).format(utc.time)
-            binding.tvSelectDate.text = dateTime.toDateFormat(NORMAL_DATE_TIME_FORMAT)
+                SimpleDateFormat(DEFAULT_DATE_FORMAT, Locale.getDefault()).format(utc.time)
+            binding.tvSelectDate.text = dateTime.toDateFormat(NORMAL_DATE_FORMAT)
             dateTime += " ${getCurrentTime()}"
             Log.d("AddTransaction", dateTime)
         }
