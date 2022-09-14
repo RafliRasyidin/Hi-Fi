@@ -23,7 +23,8 @@ data class Category(
     var id: Int,
     var bgColor: Int,
     var imageCategory: Int,
-    var name: Int
+    var name: Int? = null,
+    var nameString: String? = null
 )
 
 fun generateOutcomeCategories(): List<Category> {
@@ -55,6 +56,21 @@ fun generateIncomeCategories(): List<Category> {
         add(Category(ETC_INCOME, R.color.bg_blue, R.drawable.ic_lain_lain, R.string.etc))
     }
     return outcomeCategories
+}
+
+fun generateSourceBalanceExisting(data: List<SourceBalance>?): List<Category> {
+    val sourceBalanceExisting = ArrayList<Category>()
+    sourceBalanceExisting.apply {
+        data?.forEach { sourceBalance ->
+            add(Category(
+                id = sourceBalance.id ?: 0,
+                bgColor = sourceBalance.bgColor ?: 0,
+                imageCategory = sourceBalance.iconPath ?: 0,
+                nameString = sourceBalance.name
+            ))
+        }
+    }
+    return sourceBalanceExisting
 }
 
 object CategoryKey {
