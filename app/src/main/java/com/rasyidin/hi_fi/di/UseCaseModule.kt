@@ -2,6 +2,7 @@ package com.rasyidin.hi_fi.di
 
 import com.rasyidin.hi_fi.data.repository.AuthRepository
 import com.rasyidin.hi_fi.data.repository.BalanceRepository
+import com.rasyidin.hi_fi.data.repository.CategoryRepository
 import com.rasyidin.hi_fi.data.repository.TransactionRepository
 import com.rasyidin.hi_fi.domain.usecase.auth.GetStateOnBoarding
 import com.rasyidin.hi_fi.domain.usecase.auth.SetStateOnBoarding
@@ -19,28 +20,30 @@ import dagger.hilt.android.components.ViewModelComponent
 class UseCaseModule {
 
     @Provides
-    fun providesAuthUseCase(repository: AuthRepository): UseCaseAuth = UseCaseAuth(
-        SetStateOnBoarding(repository),
-        GetStateOnBoarding(repository)
+    fun providesAuthUseCase(authRepository: AuthRepository): UseCaseAuth = UseCaseAuth(
+        SetStateOnBoarding(authRepository),
+        GetStateOnBoarding(authRepository)
     )
 
     @Provides
-    fun providesBalanceUseCase(repository: BalanceRepository): UseCaseBalance =
+    fun providesBalanceUseCase(balanceRepository: BalanceRepository): UseCaseBalance =
         UseCaseBalance(
-            AddSourceBalance(repository),
-            GetSourceBalance(repository),
-            UpdateSourceBalance(repository),
-            DeleteSourceBalance(repository)
+            AddSourceBalance(balanceRepository),
+            GetSourceBalance(balanceRepository),
+            UpdateSourceBalance(balanceRepository),
+            DeleteSourceBalance(balanceRepository)
         )
 
     @Provides
-    fun providesTransactionUseCase(repository: TransactionRepository, repositorySourceBalance: BalanceRepository): UseCaseTransaction =
+    fun providesTransactionUseCase(transactionRepository: TransactionRepository, sourceBalanceRepository: BalanceRepository, categoryRepository: CategoryRepository): UseCaseTransaction =
         UseCaseTransaction(
-            AddTransaction(repository),
-            EditTransaction(repository),
-            DeleteTransaction(repository),
-            GetTransactions(repository),
-            GetSourceBalance(repositorySourceBalance)
+            AddTransaction(transactionRepository),
+            EditTransaction(transactionRepository),
+            DeleteTransaction(transactionRepository),
+            GetTransactions(transactionRepository),
+            GetSourceBalance(sourceBalanceRepository),
+            ValidateTransaction(),
+            GetCategoriesByType(categoryRepository)
         )
 
     @Provides

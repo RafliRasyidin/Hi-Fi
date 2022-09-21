@@ -3,6 +3,7 @@ package com.rasyidin.hi_fi.di
 import com.rasyidin.hi_fi.data.repository.*
 import com.rasyidin.hi_fi.data.source.local.SessionManager
 import com.rasyidin.hi_fi.data.source.local.db.BalanceDao
+import com.rasyidin.hi_fi.data.source.local.db.CategoryDao
 import com.rasyidin.hi_fi.data.source.local.db.TransactionDao
 import dagger.Module
 import dagger.Provides
@@ -27,4 +28,8 @@ class RepositoryModule {
     @Singleton
     fun providesTransactionRepository(dao: TransactionDao): TransactionRepository =
         TransactionRepositoryImpl(dao)
+
+    @Provides
+    @Singleton
+    fun providesCategoryRepository(dao: CategoryDao): CategoryRepository = CategoryRepositoryImpl(dao)
 }

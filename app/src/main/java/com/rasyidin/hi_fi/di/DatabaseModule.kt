@@ -6,6 +6,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.rasyidin.hi_fi.data.source.local.SessionManager
 import com.rasyidin.hi_fi.data.source.local.db.BalanceDao
+import com.rasyidin.hi_fi.data.source.local.db.CategoryDao
 import com.rasyidin.hi_fi.data.source.local.db.HiFiDatabase
 import com.rasyidin.hi_fi.utils.InitialDataSource
 import dagger.Module
@@ -26,9 +27,18 @@ class DatabaseModule {
 
     private val coroutineScope = CoroutineScope(SupervisorJob())
 
-    private suspend fun populateDatabase(context: Context, dao: Provider<BalanceDao>) {
-        val financeDao = dao.get()
+    private suspend fun populateDatabase(
+        context: Context,
+        financeProvider: Provider<BalanceDao>,
+        categoryProvider: Provider<CategoryDao>
+    ) {
+        val financeDao = financeProvider.get()
+        val categoryDao = categoryProvider.get()
         financeDao.addSourceBalance(InitialDataSource.initSourceBalance(context).first())
+        val categoryDataSource = InitialDataSource.generateCategories().map { category ->
+            category.toEntity()
+        }
+        categoryDao.addCategories(categoryDataSource)
     }
 
     @Provides
@@ -37,14 +47,17 @@ class DatabaseModule {
 
     @Provides
     @Singleton
-    fun providesHiFiDatabase(@ApplicationContext context: Context, dao: Provider<BalanceDao>) =
-        Room.databaseBuilder(context, HiFiDatabase::class.java, "hi_fi")
+    fun providesHiFiDatabase(
+        @ApplicationContext context: Context,
+        balanceProvider: Provider<BalanceDao>,
+        categoryProvider: Provider<CategoryDao>
+    ) = Room.databaseBuilder(context, HiFiDatabase::class.java, "hi_fi")
             .fallbackToDestructiveMigration()
             .addCallback(object : RoomDatabase.Callback() {
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     super.onCreate(db)
                     coroutineScope.launch(Dispatchers.IO) {
-                        populateDatabase(context, dao)
+                        populateDatabase(context, balanceProvider, categoryProvider)
                     }
                 }
 
@@ -69,4 +82,8 @@ class DatabaseModule {
     @Provides
     @Singleton
     fun providesTransactionDao(database: HiFiDatabase) = database.transactionDao()
+
+    @Provides
+    @Singleton
+    fun providesCategoryDao(database: HiFiDatabase) = database.categoryDao()
 }

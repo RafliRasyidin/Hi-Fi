@@ -13,11 +13,18 @@ data class SourceBalanceAndTransactionRelation(
         entityColumn = "sourceId"
     )
     val sourceBalance: SourceBalanceEntity,
+
+    @Relation(
+        parentColumn = "categoryId",
+        entityColumn = "categoryId"
+    )
+    val category: CategoryEntity
 ) {
     fun toDomain() : SourceBalanceAndTransaction {
         return SourceBalanceAndTransaction(
             sourceBalance = this.sourceBalance.toDomain(),
-            transaction = this.transactions.toDomain()
+            transaction = this.transactions.toDomain(),
+            category = this.category.toDomain()
         )
     }
 }

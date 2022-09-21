@@ -13,7 +13,8 @@ import com.rasyidin.hi_fi.data.source.local.entity.*
         OutcomeEntity::class,
         SourceBalanceEntity::class,
         TransactionEntity::class,
-        TypeTransactionEntity::class
+        TypeTransactionEntity::class,
+        CategoryEntity::class
     ],
     version = 1,
     exportSchema = false,
@@ -22,4 +23,5 @@ import com.rasyidin.hi_fi.data.source.local.entity.*
 abstract class HiFiDatabase : RoomDatabase() {
     abstract fun financeDao(): BalanceDao
     abstract fun transactionDao(): TransactionDao
+    abstract fun categoryDao(): CategoryDao
 }

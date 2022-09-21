@@ -1,8 +1,9 @@
 package com.rasyidin.hi_fi.domain.model.transaction
 
 import com.rasyidin.hi_fi.data.source.local.entity.TransactionEntity
+import com.rasyidin.hi_fi.domain.model.category.Category
 import com.rasyidin.hi_fi.domain.model.balance.SourceBalance
-import com.rasyidin.hi_fi.domain.model.balance.TransactionCategorize
+import com.rasyidin.hi_fi.domain.model.category.TransactionCategorize
 
 data class Transaction(
     var id: Int? = null,
@@ -27,4 +28,5 @@ data class Transaction(
 data class SourceBalanceAndTransaction(
     val transaction: Transaction,
     val sourceBalance: SourceBalance,
+    val category: Category
 )

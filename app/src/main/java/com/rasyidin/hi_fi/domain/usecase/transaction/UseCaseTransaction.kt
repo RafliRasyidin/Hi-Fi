@@ -7,5 +7,7 @@ data class UseCaseTransaction(
     val editTransaction: EditTransaction,
     val deleteTransaction: DeleteTransaction,
     val getTransactions: GetTransactions,
-    val getSourceBalance: GetSourceBalance
+    val getSourceBalance: GetSourceBalance,
+    val validateTransaction: ValidateTransaction,
+    val getCategoriesByType: GetCategoriesByType
 )
