@@ -5,7 +5,7 @@
     android:id="@+id/addTransactionFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.transaction.AddTransactionFragment">
+    tools:context=".presentation.transaction.add_transaction.AddTransactionFragment">
 
     <HorizontalScrollView
         android:id="@+id/category_container"
@@ -215,7 +215,7 @@
                 app:layout_constraintDimensionRatio=".15"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_forward"
+                app:srcCompat="@drawable/ic_forward_white"
                 app:tint="@color/black"
                 tools:ignore="ContentDescription" />
 
@@ -292,7 +292,7 @@
                 app:layout_constraintDimensionRatio=".15"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_forward"
+                app:srcCompat="@drawable/ic_forward_white"
                 app:tint="@color/black"
                 tools:ignore="ContentDescription" />
 
@@ -349,7 +349,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_forward"
+                app:srcCompat="@drawable/ic_forward_white"
                 app:tint="@color/black"
                 tools:ignore="ContentDescription" />
 
