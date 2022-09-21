@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.transaction.add_transaction.TransferFragment">
+
+    <TextView
+        android:id="@+id/label_nominal"
+        style="@style/TextBody14"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/nominal"
+        android:textColor="@color/color_gray500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/label_rp"
+        style="@style/TextMedium16"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/rp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_nominal"
+        app:layout_constraintStart_toStartOf="@id/label_nominal" />
+
+    <com.cottacush.android.currencyedittext.CurrencyEditText
+        android:id="@+id/et_nominal"
+        style="@style/TextHeader22"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:background="@null"
+        android:hint="0"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/label_rp"
+        app:layout_constraintTop_toBottomOf="@id/label_nominal"
+        tools:text="240.000" />
+
+    <TextView
+        android:id="@+id/label_from"
+        style="@style/TextBody14"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/from"
+        android:textColor="@color/color_gray500"
+        app:layout_constraintEnd_toEndOf="@id/tv_from_source"
+        app:layout_constraintStart_toStartOf="@id/label_rp"
+        app:layout_constraintTop_toBottomOf="@id/et_nominal" />
+
+    <TextView
+        android:id="@+id/label_to"
+        style="@style/TextBody14"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/to"
+        android:textColor="@color/color_gray500"
+        app:layout_constraintEnd_toEndOf="@id/et_nominal"
+        app:layout_constraintStart_toStartOf="@id/tv_to_source"
+        app:layout_constraintTop_toTopOf="@id/label_from" />
+
+    <TextView
+        android:id="@+id/tv_from_source"
+        style="@style/TextMedium16"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/choose"
+        app:layout_constraintEnd_toStartOf="@id/img_forward"
+        app:layout_constraintStart_toStartOf="@id/label_from"
+        app:layout_constraintTop_toBottomOf="@id/label_from" />
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/color_primary200"
+        app:layout_constraintEnd_toEndOf="@id/tv_from_source"
+        app:layout_constraintStart_toStartOf="@id/tv_from_source"
+        app:layout_constraintTop_toBottomOf="@id/tv_from_source" />
+
+    <ImageView
+        android:id="@+id/img_forward"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_from_source"
+        app:layout_constraintEnd_toStartOf="@id/tv_to_source"
+        app:layout_constraintStart_toEndOf="@id/tv_from_source"
+        app:layout_constraintTop_toTopOf="@id/tv_from_source"
+        app:srcCompat="@drawable/ic_forward"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tv_to_source"
+        style="@style/TextMedium16"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/choose"
+        app:layout_constraintEnd_toEndOf="@id/et_nominal"
+        app:layout_constraintStart_toEndOf="@id/img_forward"
+        app:layout_constraintTop_toTopOf="@id/tv_from_source" />
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/color_primary200"
+        app:layout_constraintEnd_toEndOf="@id/tv_to_source"
+        app:layout_constraintStart_toStartOf="@id/tv_to_source"
+        app:layout_constraintTop_toBottomOf="@id/tv_to_source" />
+
+    <TextView
+        android:id="@+id/label_date"
+        style="@style/TextBody14"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/choose_date"
+        android:textColor="@color/color_gray500"
+        app:layout_constraintEnd_toEndOf="@id/et_nominal"
+        app:layout_constraintStart_toStartOf="@id/label_from"
+        app:layout_constraintTop_toBottomOf="@id/tv_from_source" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btn_select_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_transfer"
+        app:layout_constraintEnd_toEndOf="@id/et_nominal"
+        app:layout_constraintStart_toStartOf="@id/label_from"
+        app:layout_constraintTop_toBottomOf="@id/label_date"
+        app:layout_constraintVertical_bias="0.0"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_date"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_calendar"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_select_date"
+                style="@style/TextMedium16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/img_date"
+                app:layout_constraintEnd_toStartOf="@id/img_forward_2"
+                app:layout_constraintStart_toEndOf="@id/img_date"
+                app:layout_constraintTop_toTopOf="@id/img_date"
+                tools:text="22 Juni 2022" />
+
+            <ImageView
+                android:id="@+id/img_forward_2"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_forward"
+                tools:ignore="ContentDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_transfer"
+        style="@style/TextButton16"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/transfer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
