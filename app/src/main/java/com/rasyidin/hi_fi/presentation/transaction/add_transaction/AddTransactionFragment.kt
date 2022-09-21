@@ -1,4 +1,4 @@
-package com.rasyidin.hi_fi.presentation.transaction
+package com.rasyidin.hi_fi.presentation.transaction.add_transaction
 
 import android.os.Bundle
 import android.text.Editable
@@ -27,6 +27,7 @@ import com.rasyidin.hi_fi.presentation.component.BotSheetCategoryFragment
 import com.rasyidin.hi_fi.presentation.component.BotSheetCategoryFragment.CategoryBotSheet.SOURCE_BALANCE_EXISTING
 import com.rasyidin.hi_fi.presentation.component.BotSheetCategoryFragment.CategoryBotSheet.TRANSACTION
 import com.rasyidin.hi_fi.presentation.component.FragmentBinding
+import com.rasyidin.hi_fi.presentation.transaction.TransactionViewModel
 import com.rasyidin.hi_fi.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
