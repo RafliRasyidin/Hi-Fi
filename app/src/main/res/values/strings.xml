@@ -62,4 +62,9 @@
     <string name="transfer">Transfer</string>
     <string name="savings">Tabungan</string>
     <string name="today">Hari ini</string>
+    <string name="source">Sumber Keuangan</string>
+    <string name="finance_resources">Sumber Keuangan</string>
+    <string name="from">Dari</string>
+    <string name="choose">Pilih…</string>
+    <string name="to">Ke</string>
 </resources>

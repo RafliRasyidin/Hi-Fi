@@ -1,13 +1,15 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.HiFi" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/color_primary500</item>
         <item name="colorPrimaryContainer">@color/color_primary300</item>
+
+        <item name="tabStyle">@style/HiFi.TabLayout</item>
     </style>
 
     <style name="Theme.HiFi" parent="Base.Theme.HiFi" />
-    
+
     <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
         <item name="colorPrimary">@color/color_primary500</item>
@@ -21,6 +23,7 @@
         <item name="fontFamily">@font/sofia_pro_bold</item>
         <item name="cornerRadius">10dp</item>
         <item name="textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
     </style>
 
     <!--TEXT HEADER-->
@@ -97,6 +100,17 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <!-- Tab Layout -->
+    <style name="HiFi.TextAppearance.TabLayout" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/sofia_pro_bold</item>
+        <item name="android:fontFamily">@font/sofia_pro_bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
 
+    <style name="HiFi.TabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabTextAppearance">@style/HiFi.TextAppearance.TabLayout</item>
+    </style>
 
 </resources>
