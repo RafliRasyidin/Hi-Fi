@@ -1,4 +1,4 @@
-package com.rasyidin.hi_fi.presentation.component
+package com.rasyidin.hi_fi.presentation.transaction.add_transaction
 
 import android.app.Dialog
 import android.os.Bundle
@@ -7,11 +7,22 @@ import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.rasyidin.hi_fi.databinding.BotSheetCategoryBinding
-import com.rasyidin.hi_fi.domain.model.balance.*
+import com.rasyidin.hi_fi.domain.model.balance.SourceBalance
+import com.rasyidin.hi_fi.domain.model.category.Category
+import com.rasyidin.hi_fi.domain.model.category.INCOME
+import com.rasyidin.hi_fi.domain.model.category.OUTCOME
+import com.rasyidin.hi_fi.domain.model.category.generateSourceBalanceExisting
+import com.rasyidin.hi_fi.domain.onSuccess
 import com.rasyidin.hi_fi.presentation.transaction.CategoryAdapter
+import com.rasyidin.hi_fi.presentation.transaction.TransactionViewModel
+import kotlinx.coroutines.launch
 
 class BotSheetCategoryFragment : BottomSheetDialogFragment() {
 
@@ -26,6 +37,8 @@ class BotSheetCategoryFragment : BottomSheetDialogFragment() {
     private lateinit var categoryBotSheet: CategoryBotSheet
 
     private lateinit var sourceBalanceExisting: List<SourceBalance>
+
+    private val viewModel: TransactionViewModel by activityViewModels()
 
     private var title = ""
 
@@ -58,6 +71,8 @@ class BotSheetCategoryFragment : BottomSheetDialogFragment() {
         setupAdapter()
 
         onViewClick()
+
+        observeCategories()
     }
 
     private fun initArguments() {
@@ -89,14 +104,15 @@ class BotSheetCategoryFragment : BottomSheetDialogFragment() {
         when (categoryBotSheet) {
             CategoryBotSheet.TRANSACTION -> {
                 categoryAdapter = CategoryAdapter()
-                val categories =
-                    if (isShowOutcome) generateOutcomeCategories() else generateIncomeCategories()
-                categoryAdapter.submitList(categories)
+                if (isShowOutcome) {
+                    viewModel.getCategoriesByType(OUTCOME)
+                } else {
+                    viewModel.getCategoriesByType(INCOME)
+                }
             }
             CategoryBotSheet.SOURCE_BALANCE -> {
                 categoryAdapter = CategoryAdapter(false)
-                val sourceBalanceCategories = generateIncomeCategories()
-                categoryAdapter.submitList(sourceBalanceCategories)
+                viewModel.getCategoriesByType(INCOME)
             }
             CategoryBotSheet.SOURCE_BALANCE_EXISTING -> {
                 categoryAdapter = CategoryAdapter()
@@ -107,6 +123,18 @@ class BotSheetCategoryFragment : BottomSheetDialogFragment() {
         binding.rvCategory.apply {
             layoutManager = GridLayoutManager(requireActivity(), 3)
             adapter = categoryAdapter
+        }
+    }
+
+    private fun observeCategories() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.categoriesByType.collect { resultState ->
+                    resultState.onSuccess { categories ->
+                        categoryAdapter.submitList(categories)
+                    }
+                }
+            }
         }
     }
 
