@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/addTransactionFragment"
-        android:name="com.rasyidin.hi_fi.presentation.transaction.AddTransactionFragment"
+        android:name="com.rasyidin.hi_fi.presentation.transaction.add_transaction.AddTransactionFragment"
         android:label="fragment_add_transaction"
         tools:layout="@layout/fragment_add_transaction" />
     <activity
