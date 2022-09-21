@@ -36,6 +36,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.rasyidin.hi_fi'
 }
 
 dependencies {
