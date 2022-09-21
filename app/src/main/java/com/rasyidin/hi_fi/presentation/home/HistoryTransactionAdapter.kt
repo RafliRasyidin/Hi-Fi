@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.rasyidin.hi_fi.R
 import com.rasyidin.hi_fi.databinding.ItemTransactionBinding
-import com.rasyidin.hi_fi.domain.model.balance.TransactionCategorize
+import com.rasyidin.hi_fi.domain.model.category.TransactionCategorize
 import com.rasyidin.hi_fi.domain.model.transaction.SourceBalanceAndTransaction
 import com.rasyidin.hi_fi.utils.NORMAL_DATE_FORMAT
 import com.rasyidin.hi_fi.utils.formatRupiah
@@ -42,18 +42,16 @@ class HistoryTransactionAdapter :
             binding.apply {
                 val context = root.context
                 with(item) {
-                    val transaction = transaction
-                    val sourceBalance = sourceBalance
                     imgTransaction.setImageDrawable(
                         ContextCompat.getDrawable(
                             context,
-                            sourceBalance.iconPath ?: R.drawable.ic_tagihan
+                            category.imageCategory
                         )
                     )
                     bgIcon.setCardBackgroundColor(
                         ContextCompat.getColor(
                             context,
-                            sourceBalance.bgColor ?: R.color.bg_purple
+                            category.bgColor
                         )
                     )
                     val nominal = "Rp.${formatRupiah(transaction.nominal ?: 0)}"
