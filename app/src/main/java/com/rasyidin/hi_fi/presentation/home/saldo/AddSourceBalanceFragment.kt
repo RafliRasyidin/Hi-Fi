@@ -13,8 +13,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.rasyidin.hi_fi.R
 import com.rasyidin.hi_fi.databinding.FragmentAddSourceBalanceBinding
 import com.rasyidin.hi_fi.domain.model.balance.SourceBalance
-import com.rasyidin.hi_fi.presentation.component.BotSheetCategoryFragment
-import com.rasyidin.hi_fi.presentation.component.BotSheetCategoryFragment.CategoryBotSheet.SOURCE_BALANCE
+import com.rasyidin.hi_fi.presentation.transaction.add_transaction.BotSheetCategoryFragment
+import com.rasyidin.hi_fi.presentation.transaction.add_transaction.BotSheetCategoryFragment.CategoryBotSheet.SOURCE_BALANCE
 import com.rasyidin.hi_fi.presentation.component.FragmentBinding
 import com.rasyidin.hi_fi.presentation.home.saldo.BalanceFragment.Companion.REQUEST_UPDATE
 import com.rasyidin.hi_fi.utils.DEFAULT_DATE_FORMAT
@@ -115,6 +115,9 @@ class AddSourceBalanceFragment :
             }
             bgIcon.setOnClickListener {
                 showBotSheetCategory()
+            }
+            toolbar.imgBack.setOnClickListener {
+                findNavController().popBackStack()
             }
         }
     }
