@@ -70,6 +70,7 @@ class HomeFragment : FragmentBinding<FragmentHomeBinding>(FragmentHomeBinding::i
             viewModel.historiesTransaction.collect { resultState ->
                 resultState.onSuccess { sourceBalanceAndTransaction ->
                     transactionAdapter.submitList(sourceBalanceAndTransaction)
+                    binding.rvRecentActivities.smoothScrollToPosition(0)
                     Log.d("TransactionHistory", sourceBalanceAndTransaction.toString())
                     Log.d("TransactionHistory", sourceBalanceAndTransaction?.size.toString())
                 }
