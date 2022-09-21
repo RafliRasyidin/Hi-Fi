@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.rasyidin.hi_fi.databinding.ItemCategoryBinding
-import com.rasyidin.hi_fi.domain.model.balance.Category
+import com.rasyidin.hi_fi.domain.model.category.Category
 
 class CategoryAdapter(private val showWithName: Boolean = true) : ListAdapter<Category, CategoryAdapter.CategoryViewHolder>(diffCallback) {
 

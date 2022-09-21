@@ -2,7 +2,7 @@ package com.rasyidin.hi_fi.data.source.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.rasyidin.hi_fi.domain.model.balance.TransactionCategorize
+import com.rasyidin.hi_fi.domain.model.category.TransactionCategorize
 import com.rasyidin.hi_fi.domain.model.transaction.Transaction
 
 @Entity(tableName = "transactionEntity")
