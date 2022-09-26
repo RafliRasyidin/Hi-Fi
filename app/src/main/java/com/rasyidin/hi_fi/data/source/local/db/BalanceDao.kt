@@ -17,4 +17,7 @@ interface BalanceDao {
 
     @Query("SELECT * FROM sourceBalance")
     suspend fun getSourcesBalance(): List<SourceBalanceEntity>
+
+    @Query("SELECT * FROM sourceBalance WHERE sourceId = :sourceBalanceId")
+    suspend fun getSourceBalanceById(sourceBalanceId: Int): SourceBalanceEntity
 }

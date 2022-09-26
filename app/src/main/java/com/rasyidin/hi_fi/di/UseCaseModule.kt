@@ -8,6 +8,7 @@ import com.rasyidin.hi_fi.domain.usecase.auth.GetStateOnBoarding
 import com.rasyidin.hi_fi.domain.usecase.auth.SetStateOnBoarding
 import com.rasyidin.hi_fi.domain.usecase.auth.UseCaseAuth
 import com.rasyidin.hi_fi.domain.usecase.balance.*
+import com.rasyidin.hi_fi.domain.usecase.balance.UpdateSourceBalance
 import com.rasyidin.hi_fi.domain.usecase.home.UseCaseHome
 import com.rasyidin.hi_fi.domain.usecase.transaction.*
 import dagger.Module
@@ -35,7 +36,11 @@ class UseCaseModule {
         )
 
     @Provides
-    fun providesTransactionUseCase(transactionRepository: TransactionRepository, sourceBalanceRepository: BalanceRepository, categoryRepository: CategoryRepository): UseCaseTransaction =
+    fun providesTransactionUseCase(
+        transactionRepository: TransactionRepository,
+        sourceBalanceRepository: BalanceRepository,
+        categoryRepository: CategoryRepository
+    ): UseCaseTransaction =
         UseCaseTransaction(
             AddTransaction(transactionRepository),
             EditTransaction(transactionRepository),
@@ -43,11 +48,16 @@ class UseCaseModule {
             GetTransactions(transactionRepository),
             GetSourceBalance(sourceBalanceRepository),
             ValidateTransaction(),
-            GetCategoriesByType(categoryRepository)
+            GetCategoriesByType(categoryRepository),
+            GetSourceBalanceById(sourceBalanceRepository),
+            com.rasyidin.hi_fi.domain.usecase.transaction.UpdateSourceBalance(sourceBalanceRepository)
         )
 
     @Provides
-    fun providesHomeUseCase(transactionRepository: TransactionRepository, sourceBalanceRepository: BalanceRepository): UseCaseHome =
+    fun providesHomeUseCase(
+        transactionRepository: TransactionRepository,
+        sourceBalanceRepository: BalanceRepository
+    ): UseCaseHome =
         UseCaseHome(
             GetTransactions(transactionRepository),
             GetSourceBalance(sourceBalanceRepository)

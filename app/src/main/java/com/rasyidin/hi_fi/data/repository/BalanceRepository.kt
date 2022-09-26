@@ -15,4 +15,6 @@ interface BalanceRepository {
 
     suspend fun getSourcesBalance(): Flow<ResultState<List<SourceBalance>>>
 
+    suspend fun getSourceBalanceById(sourceBalanceId: Int): Flow<ResultState<SourceBalanceEntity>>
+
 }

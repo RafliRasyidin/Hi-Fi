@@ -40,6 +40,8 @@ class OutcomeFragment : FragmentBinding<FragmentOutcomeBinding>(FragmentOutcomeB
 
     private var sourceBalances = listOf<SourceBalance>()
 
+    private var sourceBalance = SourceBalance()
+
     private var sourceAccountId: Int = 0
 
     private var categoryId = 0
@@ -50,6 +52,8 @@ class OutcomeFragment : FragmentBinding<FragmentOutcomeBinding>(FragmentOutcomeB
         binding.tvSelectDate.text = getCurrentDate()
 
         viewModel.setButtonState(ValidateTransaction.TransactionState.SOURCE_BALANCE, true)
+
+        observeListSourceBalance()
 
         observeSourceBalance()
 
@@ -114,14 +118,28 @@ class OutcomeFragment : FragmentBinding<FragmentOutcomeBinding>(FragmentOutcomeB
     }
 
     private fun observeSourceBalance() {
-        viewModel.getSourceBalance()
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.sourceBalance.collect { result ->
+                    result.onSuccess {
+                        it?.let {
+                            sourceBalance  = it
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun observeListSourceBalance() {
+        viewModel.getSourceBalance()
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.sourceBalances.collect { result ->
                     result.onSuccess { data ->
                         if (data != null) {
                             sourceBalances = data
-                            val sourceBalance = sourceBalances.first()
+                            sourceBalance = sourceBalances.first()
                             sourceAccountId = sourceBalance.sourceId ?: 0
                             binding.apply {
                                 tvTypeSource.text = sourceBalance.name
@@ -165,7 +183,12 @@ class OutcomeFragment : FragmentBinding<FragmentOutcomeBinding>(FragmentOutcomeB
             categoryId = categoryId,
             sId = sourceAccountId
         )
+
+        val sourceBalanceNominal = sourceBalance.balance?.minus(nominal.toLong())
+        sourceBalance.balance = sourceBalanceNominal
+        sourceBalance.updateAt = getCurrentDate()
         viewModel.addTransaction(transaction)
+        viewModel.updateSourceBalance(sourceBalance)
         findNavController().popBackStack()
     }
 
@@ -185,6 +208,7 @@ class OutcomeFragment : FragmentBinding<FragmentOutcomeBinding>(FragmentOutcomeB
                 with(category) {
                     if (categoryBotSheet == BotSheetCategoryFragment.CategoryBotSheet.SOURCE_BALANCE_EXISTING) {
                         sourceAccountId = id
+                        viewModel.getSourceBalanceById(sourceAccountId)
                         bgIconSource.setCardBackgroundColor(
                             ContextCompat.getColor(
                                 requireActivity(),

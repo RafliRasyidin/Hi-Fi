@@ -9,5 +9,7 @@ data class UseCaseTransaction(
     val getTransactions: GetTransactions,
     val getSourceBalance: GetSourceBalance,
     val validateTransaction: ValidateTransaction,
-    val getCategoriesByType: GetCategoriesByType
+    val getCategoriesByType: GetCategoriesByType,
+    val getSourceBalanceById: GetSourceBalanceById,
+    val updateSourceBalance: UpdateSourceBalance
 )

@@ -26,10 +26,11 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun providesTransactionRepository(dao: TransactionDao): TransactionRepository =
-        TransactionRepositoryImpl(dao)
+    fun providesTransactionRepository(transactionDao: TransactionDao): TransactionRepository =
+        TransactionRepositoryImpl(transactionDao)
 
     @Provides
     @Singleton
-    fun providesCategoryRepository(dao: CategoryDao): CategoryRepository = CategoryRepositoryImpl(dao)
+    fun providesCategoryRepository(dao: CategoryDao): CategoryRepository =
+        CategoryRepositoryImpl(dao)
 }

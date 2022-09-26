@@ -5,28 +5,28 @@ import com.rasyidin.hi_fi.data.source.local.entity.SourceBalanceAndTransactionRe
 import com.rasyidin.hi_fi.data.source.local.entity.TransactionEntity
 import com.rasyidin.hi_fi.domain.ResultState
 import com.rasyidin.hi_fi.domain.fetch
-import com.rasyidin.hi_fi.domain.model.transaction.SourceBalanceAndTransaction
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class TransactionRepositoryImpl @Inject constructor(private val dao: TransactionDao) :
-    TransactionRepository {
+class TransactionRepositoryImpl @Inject constructor(
+    private val transactionDao: TransactionDao
+) : TransactionRepository {
 
     override suspend fun addTransaction(transactionEntity: TransactionEntity) {
-        dao.addTransaction(transactionEntity)
+        transactionDao.addTransaction(transactionEntity)
     }
 
     override suspend fun editTransaction(transactionEntity: TransactionEntity) {
-        dao.editTransaction(transactionEntity)
+        transactionDao.editTransaction(transactionEntity)
     }
 
     override suspend fun deleteTransaction(transactionEntity: TransactionEntity) {
-        dao.deleteTransaction(transactionEntity)
+        transactionDao.deleteTransaction(transactionEntity)
     }
 
     override suspend fun getTransactions(): Flow<ResultState<List<SourceBalanceAndTransactionRelation>>> {
         return fetch {
-            dao.getTransactions()
+            transactionDao.getTransactions()
         }
     }
 }

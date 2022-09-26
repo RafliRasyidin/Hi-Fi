@@ -30,4 +30,10 @@ class BalanceRepositoryImpl @Inject constructor(private val dao: BalanceDao) :
             }
         }
     }
+
+    override suspend fun getSourceBalanceById(sourceBalanceId: Int): Flow<ResultState<SourceBalanceEntity>> {
+        return fetch {
+            dao.getSourceBalanceById(sourceBalanceId)
+        }
+    }
 }

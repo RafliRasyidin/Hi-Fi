@@ -20,14 +20,31 @@ import javax.inject.Inject
 class TransactionViewModel @Inject constructor(private val useCase: UseCaseTransaction) :
     ViewModel() {
 
-    private var _sourceBalance: MutableStateFlow<ResultState<List<SourceBalance>>> = idle()
-    val sourceBalance get() = _sourceBalance.asStateFlow()
+    private var _sourceBalances: MutableStateFlow<ResultState<List<SourceBalance>>> = idle()
+    val sourceBalances get() = _sourceBalances.asStateFlow()
 
     private var _isValidated: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val isValidated get() = _isValidated.asStateFlow()
 
     private var _categoriesByType: Channel<ResultState<List<Category>>> = Channel()
     val categoriesByType get() = _categoriesByType.receiveAsFlow()
+
+    private var _sourceBalance: MutableStateFlow<ResultState<SourceBalance>> = idle()
+    val sourceBalance get() = _sourceBalance.asStateFlow()
+
+    fun getSourceBalanceById(sourceBalanceId: Int) {
+        viewModelScope.launch {
+            useCase.getSourceBalanceById(sourceBalanceId).collect { result ->
+                _sourceBalance.value = result
+            }
+        }
+    }
+
+    fun updateSourceBalance(sourceBalance: SourceBalance) {
+        viewModelScope.launch {
+            useCase.updateSourceBalance(sourceBalance)
+        }
+    }
 
     fun getCategoriesByType(type: String) {
         viewModelScope.launch {
@@ -66,7 +83,7 @@ class TransactionViewModel @Inject constructor(private val useCase: UseCaseTrans
     fun getSourceBalance() {
         viewModelScope.launch {
             useCase.getSourceBalance().collect { resultState ->
-                _sourceBalance.value = resultState
+                _sourceBalances.value = resultState
             }
         }
     }
