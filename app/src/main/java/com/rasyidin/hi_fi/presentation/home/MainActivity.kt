@@ -3,8 +3,8 @@ package com.rasyidin.hi_fi.presentation.home
 import android.os.Bundle
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.rasyidin.hi_fi.R
 import com.rasyidin.hi_fi.databinding.ActivityMainBinding
@@ -33,7 +33,15 @@ class MainActivity : ActivityBinding<ActivityMainBinding>() {
     private fun onClickView() {
         binding.apply {
             fabAdd.setOnClickListener {
-                navController.navigate(R.id.addTransactionFragment)
+                val navOptions = NavOptions.Builder()
+                    .setEnterAnim(R.anim.slide_up)
+                    .setExitAnim(R.anim.slide_down)
+                    .setPopEnterAnim(R.anim.slide_up)
+                    .setPopExitAnim(R.anim.slide_down)
+                    .build()
+
+                navController.navigate(R.id.addTransactionFragment, null, navOptions)
+
             }
         }
     }
