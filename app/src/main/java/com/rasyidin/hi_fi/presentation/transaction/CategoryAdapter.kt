@@ -7,8 +7,11 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.rasyidin.hi_fi.R
 import com.rasyidin.hi_fi.databinding.ItemCategoryBinding
 import com.rasyidin.hi_fi.domain.model.category.Category
+import com.rasyidin.hi_fi.domain.model.category.CategoryKey
+import com.rasyidin.hi_fi.domain.model.category.INCOME_CATEGORY
 
 class CategoryAdapter(private val showWithName: Boolean = true) : ListAdapter<Category, CategoryAdapter.CategoryViewHolder>(diffCallback) {
 
@@ -21,6 +24,13 @@ class CategoryAdapter(private val showWithName: Boolean = true) : ListAdapter<Ca
             binding.apply {
                 imgCategory.setImageDrawable(ContextCompat.getDrawable(context, item.imageCategory))
                 cardCategory.setCardBackgroundColor(ContextCompat.getColor(context, item.bgColor))
+
+                if (item.typeCategory == INCOME_CATEGORY) {
+                    if (item.id == CategoryKey.ETC_INCOME_CATEGORY) {
+                        imgCategory.setColorFilter(ContextCompat.getColor(context, R.color.color_red300))
+                    }
+                }
+
                 tvName.text = if (item.name != null) context.getString(item.name!!) else item.nameString
                 tvName.isVisible = showWithName
             }

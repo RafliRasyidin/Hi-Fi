@@ -8,7 +8,9 @@
     <color name="color_gray300">#949494</color>
     <color name="color_gray500">#6E6E6E</color>
     <color name="color_red">#FF4447</color>
+    <color name="color_red300">#FD6A7E</color>
     <color name="color_green">#3AC143</color>
+    <color name="color_green500">#17B978</color>
 
     <!--COLOR BACKGROUND CATEGORY-->
     <color name="bg_red">#40FD6A7E</color>
