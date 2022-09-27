@@ -35,10 +35,15 @@ class DatabaseModule {
         val financeDao = financeProvider.get()
         val categoryDao = categoryProvider.get()
         financeDao.addSourceBalance(InitialDataSource.initSourceBalance(context).first())
-        val categoryDataSource = InitialDataSource.generateCategories().map { category ->
+        val categoryDataSource = InitialDataSource.generateOutcomeCategories().map { category ->
             category.toEntity()
         }
-        categoryDao.addCategories(categoryDataSource)
+        categoryDao.addOutcomeCategories(categoryDataSource)
+
+        val incomeCategories = InitialDataSource.generateIncomeCategories().map { category ->
+            category.toEntity()
+        }
+        categoryDao.addIncomeCategories(incomeCategories)
     }
 
     @Provides

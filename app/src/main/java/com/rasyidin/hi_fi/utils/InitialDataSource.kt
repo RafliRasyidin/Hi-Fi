@@ -3,10 +3,7 @@ package com.rasyidin.hi_fi.utils
 import android.content.Context
 import com.rasyidin.hi_fi.R
 import com.rasyidin.hi_fi.data.source.local.entity.SourceBalanceEntity
-import com.rasyidin.hi_fi.domain.model.category.Category
-import com.rasyidin.hi_fi.domain.model.category.CategoryKey
-import com.rasyidin.hi_fi.domain.model.category.INCOME
-import com.rasyidin.hi_fi.domain.model.category.OUTCOME
+import com.rasyidin.hi_fi.domain.model.category.*
 
 object InitialDataSource {
     fun initSourceBalance(context: Context): List<SourceBalanceEntity> {
@@ -22,9 +19,9 @@ object InitialDataSource {
         )
     }
 
-    fun generateCategories(): List<Category> {
-        val incomeCategories = ArrayList<Category>()
-        incomeCategories.apply {
+    fun generateOutcomeCategories(): List<Category> {
+        val outcomeCategories = ArrayList<Category>()
+        outcomeCategories.apply {
             add(Category(CategoryKey.FOOD, R.color.bg_red, R.drawable.ic_food_n_drink, R.string.food_and_drink, typeCategory = OUTCOME))
             add(Category(CategoryKey.SHOP, R.color.bg_light_blue, R.drawable.ic_belanja, R.string.shop, typeCategory = OUTCOME))
             add(Category(CategoryKey.TRANSPORT, R.color.bg_blue, R.drawable.ic_kendaraan, R.string.transport, typeCategory = OUTCOME))
@@ -42,6 +39,20 @@ object InitialDataSource {
             add(Category(CategoryKey.CASH, R.color.bg_green, R.drawable.ic_cash, R.string.cash, typeCategory = INCOME))
             add(Category(CategoryKey.ATM, R.color.bg_blue, R.drawable.ic_atm, R.string.atm, typeCategory = INCOME))
             add(Category(CategoryKey.ETC_INCOME, R.color.bg_blue, R.drawable.ic_lain_lain, R.string.etc, typeCategory = INCOME))
+        }
+        return outcomeCategories
+    }
+
+    fun generateIncomeCategories(): List<Category> {
+        val incomeCategories = ArrayList<Category>()
+        incomeCategories.apply {
+            add(Category(CategoryKey.SALARY, R.color.bg_green, R.drawable.ic_money_bag, R.string.salary, typeCategory = INCOME_CATEGORY))
+            add(Category(CategoryKey.BONUS, R.color.bg_blue, R.drawable.ic_bonus, R.string.bonus, typeCategory = INCOME_CATEGORY))
+            add(Category(CategoryKey.GIFT, R.color.bg_yellow, R.drawable.ic_gift, R.string.gift, typeCategory = INCOME_CATEGORY))
+            add(Category(CategoryKey.BUSINESS, R.color.bg_green, R.drawable.ic_bisnis, R.string.business, typeCategory = INCOME_CATEGORY))
+            add(Category(CategoryKey.INVESTATION, R.color.bg_light_blue, R.drawable.ic_investasi_income, R.string.investation, typeCategory = INCOME_CATEGORY))
+            add(Category(CategoryKey.SALE, R.color.bg_pink, R.drawable.ic_sale, R.string.sale, typeCategory = INCOME_CATEGORY))
+            add(Category(CategoryKey.ETC_INCOME_CATEGORY, R.color.bg_red, R.drawable.ic_lain_lain, R.string.sale, typeCategory = INCOME_CATEGORY))
         }
         return incomeCategories
     }

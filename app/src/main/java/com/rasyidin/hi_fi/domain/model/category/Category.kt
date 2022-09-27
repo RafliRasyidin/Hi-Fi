@@ -56,6 +56,13 @@ object CategoryKey {
     const val CASH = 15
     const val ATM = 16
     const val ETC_INCOME = 17
+    const val SALARY = 18
+    const val BONUS = 19
+    const val GIFT = 20
+    const val BUSINESS = 21
+    const val INVESTATION = 22
+    const val SALE = 23
+    const val ETC_INCOME_CATEGORY = 24
 }
 
 enum class TransactionCategorize {
@@ -66,4 +73,5 @@ enum class TransactionCategorize {
 
 const val OUTCOME = "Outcome"
 const val INCOME = "Income"
+const val INCOME_CATEGORY = "IncomeCategory"
 
