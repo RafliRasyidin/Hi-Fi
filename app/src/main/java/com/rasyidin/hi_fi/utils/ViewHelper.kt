@@ -5,6 +5,8 @@ import android.content.Context
 import android.text.format.DateUtils
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.Animation.AnimationListener
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -18,6 +20,19 @@ const val NORMAL_DATE_FORMAT = "dd MMM yyyy"
 const val DEFAULT_DATE_FORMAT = "yyyy-MM-dd"
 const val DEFAULT_TIME_FORMAT = "HH:mm:ss"
 const val DEFAULT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss"
+
+fun View.startAnimation(animation: Animation, onEnd: () -> Unit) {
+    animation.setAnimationListener(object : AnimationListener{
+        override fun onAnimationStart(animation: Animation?) = Unit
+
+        override fun onAnimationEnd(animation: Animation?) {
+            onEnd()
+        }
+
+        override fun onAnimationRepeat(animation: Animation?) = Unit
+    })
+    this.startAnimation(animation)
+}
 
 fun hideBotNav(context: Context) {
     val botNav =
