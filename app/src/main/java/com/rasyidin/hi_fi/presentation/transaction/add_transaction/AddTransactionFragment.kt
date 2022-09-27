@@ -36,6 +36,7 @@ class AddTransactionFragment :
         pagerAdapter = TransactionPagerAdapter(childFragmentManager, viewLifecycleOwner.lifecycle)
         binding.vpTransaction.adapter = pagerAdapter
 
+        binding.vpTransaction.isUserInputEnabled = false
         mediator = TabLayoutMediator(binding.tabs, binding.vpTransaction) { tabs, position ->
             tabs.text = when (position) {
                 0 -> getString(R.string.outcome)
