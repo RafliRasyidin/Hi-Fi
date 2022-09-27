@@ -3,6 +3,7 @@ package com.rasyidin.hi_fi.presentation.transaction.add_transaction
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.rasyidin.hi_fi.R
 import com.rasyidin.hi_fi.databinding.FragmentAddTransactionBinding
@@ -53,6 +54,9 @@ class AddTransactionFragment :
                     R.drawable.ic_close
                 )
             )
+            imgBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
             tvTitle.text = getString(R.string.add_transaction)
         }
     }
