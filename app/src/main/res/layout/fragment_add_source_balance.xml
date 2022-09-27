@@ -93,6 +93,7 @@
         android:inputType="number"
         android:ems="10"
         app:currencySymbol="Rp"
+        android:maxLength="20"
         app:layout_constraintEnd_toEndOf="@id/tv_nominal"
         app:layout_constraintStart_toStartOf="@id/tv_nominal"
         app:layout_constraintTop_toBottomOf="@id/tv_nominal"/>
