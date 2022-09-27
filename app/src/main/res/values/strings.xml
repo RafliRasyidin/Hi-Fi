@@ -67,4 +67,10 @@
     <string name="from">Dari</string>
     <string name="choose">Pilih…</string>
     <string name="to">Ke</string>
+    <string name="salary">Gaji</string>
+    <string name="bonus">Bonus</string>
+    <string name="gift">Pemberian</string>
+    <string name="business">Bisnis</string>
+    <string name="investation">Investasi</string>
+    <string name="sale">Penjualan</string>
 </resources>
