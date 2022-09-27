@@ -15,10 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.rasyidin.hi_fi.databinding.BotSheetCategoryBinding
 import com.rasyidin.hi_fi.domain.model.balance.SourceBalance
-import com.rasyidin.hi_fi.domain.model.category.Category
-import com.rasyidin.hi_fi.domain.model.category.INCOME
-import com.rasyidin.hi_fi.domain.model.category.OUTCOME
-import com.rasyidin.hi_fi.domain.model.category.generateSourceBalanceExisting
+import com.rasyidin.hi_fi.domain.model.category.*
 import com.rasyidin.hi_fi.domain.onSuccess
 import com.rasyidin.hi_fi.presentation.transaction.CategoryAdapter
 import com.rasyidin.hi_fi.presentation.transaction.TransactionViewModel
@@ -107,7 +104,7 @@ class BotSheetCategoryFragment : BottomSheetDialogFragment() {
                 if (isShowOutcome) {
                     viewModel.getCategoriesByType(OUTCOME)
                 } else {
-                    viewModel.getCategoriesByType(INCOME)
+                    viewModel.getCategoriesByType(INCOME_CATEGORY)
                 }
             }
             CategoryBotSheet.SOURCE_BALANCE -> {
