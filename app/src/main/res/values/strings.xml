@@ -73,4 +73,6 @@
     <string name="business">Bisnis</string>
     <string name="investation">Investasi</string>
     <string name="sale">Penjualan</string>
+    <string name="error">Error</string>
+    <string name="error_source_account_same">Sumber Akun Tidak Boleh Sama</string>
 </resources>
