@@ -9,7 +9,7 @@ import com.rasyidin.hi_fi.domain.model.category.Category
 import com.rasyidin.hi_fi.domain.model.transaction.Transaction
 import com.rasyidin.hi_fi.domain.usecase.transaction.UseCaseTransaction
 import com.rasyidin.hi_fi.domain.usecase.transaction.ValidateTransaction
-import com.rasyidin.hi_fi.domain.usecase.transaction.ValidateTransaction.TransactionState.*
+import com.rasyidin.hi_fi.domain.usecase.transaction.ValidateTransaction.TransactionPickState.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -78,19 +78,23 @@ class TransactionViewModel @Inject constructor(private val useCase: UseCaseTrans
         }
     }
 
-    fun setButtonState(transactionState: ValidateTransaction.TransactionState, isValid: Boolean) {
-        when (transactionState) {
+    fun setButtonState(
+        transactionPickState: ValidateTransaction.TransactionPickState,
+        isValid: Boolean,
+        transactionType: ValidateTransaction.TransactionType = ValidateTransaction.TransactionType.OUTCOME
+    ) {
+        when (transactionPickState) {
             CATEGORY -> {
                 useCase.validateTransaction.setCategoryState(isValid)
-                getTransactionButtonState()
+                getTransactionButtonState(transactionType)
             }
             NOMINAL -> {
                 useCase.validateTransaction.setNominalState(isValid)
-                getTransactionButtonState()
+                getTransactionButtonState(transactionType)
             }
             SOURCE_BALANCE -> {
                 useCase.validateTransaction.setSourceBalanceState(isValid)
-                getTransactionButtonState()
+                getTransactionButtonState(transactionType)
             }
             SOURCE_BALANCE_FROM -> {
                 useCase.validateTransaction.setSourceBalanceFromState(isValid)

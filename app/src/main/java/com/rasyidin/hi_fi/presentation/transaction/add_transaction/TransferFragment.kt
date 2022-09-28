@@ -55,7 +55,11 @@ class TransferFragment :
 
         binding.tvSelectDate.text = getCurrentDate()
 
-        viewModel.setButtonState(ValidateTransaction.TransactionState.SOURCE_BALANCE_FROM, true)
+        viewModel.setButtonState(
+            ValidateTransaction.TransactionPickState.SOURCE_BALANCE_FROM,
+            true,
+            TRANSFER
+        )
 
         observeListSourceBalance()
 
@@ -103,11 +107,19 @@ class TransferFragment :
             binding.apply {
                 if (isPickSourceBalanceFrom) {
                     viewModel.getSourceBalanceByIdFrom(category.id ?: 0)
-                    viewModel.setButtonState(ValidateTransaction.TransactionState.SOURCE_BALANCE_FROM, true)
+                    viewModel.setButtonState(
+                        ValidateTransaction.TransactionPickState.SOURCE_BALANCE_FROM,
+                        true,
+                        TRANSFER
+                    )
                     tvFromSource.text = category.nameString
                 } else {
                     viewModel.getSourceBalanceByIdTo(category.id ?: 0)
-                    viewModel.setButtonState(ValidateTransaction.TransactionState.SOURCE_BALANCE_TO, true)
+                    viewModel.setButtonState(
+                        ValidateTransaction.TransactionPickState.SOURCE_BALANCE_TO,
+                        true,
+                        TRANSFER
+                    )
                     tvToSource.text = category.nameString
                 }
             }
@@ -118,38 +130,43 @@ class TransferFragment :
         binding.etNominal.doOnTextChanged { text, _, _, _ ->
             val isNominalNotEmpty = text?.isNotEmpty() ?: false
             viewModel.setButtonState(
-                ValidateTransaction.TransactionState.NOMINAL,
-                isNominalNotEmpty
+                ValidateTransaction.TransactionPickState.NOMINAL,
+                isNominalNotEmpty,
+                TRANSFER
             )
         }
     }
 
     private fun transfer() {
-        val nominal = binding.etNominal.text.toString().clearFormatCurrency()
-        val transaction = Transaction(
-            nominal = nominal.toLong(),
-            description = getString(R.string.transfer),
-            date = dateTime,
-            idTypeTransaction = TransactionCategorize.TRANSFER,
-            sourceAccountDestinationId = sourceAccountDestinationId,
-            sourceAccountId = sourceAccountId
-        )
+        if (sourceAccountDestinationId == sourceAccountId) {
+            showLongSnackbar(binding.root, getString(R.string.error_source_account_same))
+        } else {
+            val nominal = binding.etNominal.text.toString().clearFormatCurrency()
+            val transaction = Transaction(
+                nominal = nominal.toLong(),
+                description = getString(R.string.transfer),
+                date = dateTime,
+                idTypeTransaction = TransactionCategorize.TRANSFER,
+                sourceAccountDestinationId = sourceAccountDestinationId,
+                sourceAccountId = sourceAccountId
+            )
 
-        val sourceBalanceFromNominal = sourceBalanceFrom.balance?.minus(nominal.toLong())
-        sourceBalanceFrom.apply {
-            balance = sourceBalanceFromNominal
-            updateAt = getCurrentDate()
-        }
+            val sourceBalanceFromNominal = sourceBalanceFrom.balance?.minus(nominal.toLong())
+            sourceBalanceFrom.apply {
+                balance = sourceBalanceFromNominal
+                updateAt = getCurrentDate()
+            }
 
-        val sourceBalanceToNominal = sourceBalanceTo.balance?.plus(nominal.toLong())
-        sourceBalanceTo.apply {
-            balance = sourceBalanceToNominal
-            updateAt = getCurrentDate()
+            val sourceBalanceToNominal = sourceBalanceTo.balance?.plus(nominal.toLong())
+            sourceBalanceTo.apply {
+                balance = sourceBalanceToNominal
+                updateAt = getCurrentDate()
+            }
+            viewModel.addTransaction(transaction)
+            viewModel.updateSourceBalance(sourceBalanceFrom)
+            viewModel.updateSourceBalance(sourceBalanceTo)
+            findNavController().popBackStack()
         }
-        viewModel.addTransaction(transaction)
-        viewModel.updateSourceBalance(sourceBalanceFrom)
-        viewModel.updateSourceBalance(sourceBalanceTo)
-        findNavController().popBackStack()
     }
 
     private fun pickDate() {
@@ -175,9 +192,12 @@ class TransferFragment :
     }
 
     private fun observeButtonSave() {
-        lifecycleScope.launch {
-            viewModel.isValidated.collect { isValidated ->
-                binding.btnTransfer.isEnabled = isValidated
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.isValidated.collect { isValidated ->
+                    Log.d("TransferButton", "Is Validated: $isValidated")
+                    binding.btnTransfer.isEnabled = isValidated
+                }
             }
         }
     }
@@ -236,6 +256,10 @@ class TransferFragment :
                 }
             }
         }
+    }
+
+    companion object {
+        private val TRANSFER = ValidateTransaction.TransactionType.TRANSFER
     }
 
 }
