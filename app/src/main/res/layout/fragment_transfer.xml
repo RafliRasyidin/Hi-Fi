@@ -73,6 +73,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:text="@string/choose"
         app:layout_constraintEnd_toStartOf="@id/img_forward"
         app:layout_constraintStart_toStartOf="@id/label_from"
@@ -108,6 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/choose"
+        android:background="?attr/selectableItemBackgroundBorderless"
         app:layout_constraintEnd_toEndOf="@id/et_nominal"
         app:layout_constraintStart_toEndOf="@id/img_forward"
         app:layout_constraintTop_toTopOf="@id/tv_from_source" />
