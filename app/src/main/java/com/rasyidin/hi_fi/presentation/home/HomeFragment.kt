@@ -8,11 +8,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rasyidin.hi_fi.databinding.FragmentHomeBinding
+import com.rasyidin.hi_fi.domain.onFailure
 import com.rasyidin.hi_fi.domain.onSuccess
 import com.rasyidin.hi_fi.presentation.component.FragmentBinding
 import com.rasyidin.hi_fi.utils.formatRupiah
 import com.rasyidin.hi_fi.utils.showBotNav
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -70,9 +73,17 @@ class HomeFragment : FragmentBinding<FragmentHomeBinding>(FragmentHomeBinding::i
             viewModel.historiesTransaction.collect { resultState ->
                 resultState.onSuccess { sourceBalanceAndTransaction ->
                     transactionAdapter.submitList(sourceBalanceAndTransaction)
-                    binding.rvRecentActivities.smoothScrollToPosition(0)
+                    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+                        delay(300)
+                        binding.rvRecentActivities.smoothScrollToPosition(0)
+                    }
                     Log.d("TransactionHistory", sourceBalanceAndTransaction.toString())
                     Log.d("TransactionHistory", sourceBalanceAndTransaction?.size.toString())
+                }
+
+                resultState.onFailure {
+                    it.printStackTrace()
+                    Log.e("TransactionHistory", it.message.toString())
                 }
             }
         }
