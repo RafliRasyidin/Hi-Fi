@@ -48,7 +48,7 @@ class ValidateTransaction {
         TRANSFER
     }
 
-    enum class TransactionState {
+    enum class TransactionPickState {
         CATEGORY,
         NOMINAL,
         SOURCE_BALANCE,
