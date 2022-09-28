@@ -7,9 +7,13 @@ import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.BaseTransientBottomBar.ANIMATION_MODE_SLIDE
+import com.google.android.material.snackbar.Snackbar
+import com.rasyidin.hi_fi.HiFiApp
 import com.rasyidin.hi_fi.R
 import java.text.DecimalFormat
 import java.text.NumberFormat
@@ -20,6 +24,26 @@ const val NORMAL_DATE_FORMAT = "dd MMM yyyy"
 const val DEFAULT_DATE_FORMAT = "yyyy-MM-dd"
 const val DEFAULT_TIME_FORMAT = "HH:mm:ss"
 const val DEFAULT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss"
+
+fun showShortToast(message: String) {
+    Toast.makeText(HiFiApp.appContext, message, Toast.LENGTH_SHORT).show()
+}
+
+fun showLongToast(message: String) {
+    Toast.makeText(HiFiApp.appContext, message, Toast.LENGTH_LONG).show()
+}
+
+fun showLongSnackbar(view: View, message: String) {
+    Snackbar.make(view, message, Snackbar.LENGTH_LONG)
+        .setAnimationMode(ANIMATION_MODE_SLIDE)
+        .show()
+}
+
+fun showShortSnackbar(view: View, message: String) {
+    Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
+        .setAnimationMode(ANIMATION_MODE_SLIDE)
+        .show()
+}
 
 fun View.startAnimation(animation: Animation, onEnd: () -> Unit) {
     animation.setAnimationListener(object : AnimationListener{
