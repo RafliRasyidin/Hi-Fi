@@ -5,7 +5,7 @@ import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -31,7 +31,7 @@ import java.util.*
 @AndroidEntryPoint
 class IncomeFragment : FragmentBinding<FragmentIncomeBinding>(FragmentIncomeBinding::inflate) {
 
-    private val viewModel: TransactionViewModel by activityViewModels()
+    private val viewModel: TransactionViewModel by viewModels()
 
     private var dateTime = getCurrentDate(DEFAULT_DATE_FORMAT) + " ${getCurrentTime()}"
 
@@ -50,7 +50,7 @@ class IncomeFragment : FragmentBinding<FragmentIncomeBinding>(FragmentIncomeBind
 
         binding.tvSelectDate.text = getCurrentDate()
 
-        viewModel.setButtonState(ValidateTransaction.TransactionState.SOURCE_BALANCE, true)
+        viewModel.setButtonState(ValidateTransaction.TransactionPickState.SOURCE_BALANCE, true)
 
         onViewClick()
 
@@ -94,7 +94,7 @@ class IncomeFragment : FragmentBinding<FragmentIncomeBinding>(FragmentIncomeBind
             date = dateTime,
             idTypeTransaction = TransactionCategorize.INCOME,
             categoryId = categoryId,
-            sId = sourceAccountId
+            sourceAccountId = sourceAccountId
         )
 
         val sourceBalanceNominal = sourceBalance.balance?.plus(nominal.toLong())
@@ -131,7 +131,7 @@ class IncomeFragment : FragmentBinding<FragmentIncomeBinding>(FragmentIncomeBind
         binding.etNominal.doOnTextChanged { text, _, _, _ ->
             val isNominalNotEmpty = text?.isNotEmpty() ?: false
             viewModel.setButtonState(
-                ValidateTransaction.TransactionState.NOMINAL,
+                ValidateTransaction.TransactionPickState.NOMINAL,
                 isNominalNotEmpty
             )
         }
@@ -207,7 +207,7 @@ class IncomeFragment : FragmentBinding<FragmentIncomeBinding>(FragmentIncomeBind
             binding.apply {
                 with(category) {
                     if (categoryBotSheet == BotSheetCategoryFragment.CategoryBotSheet.SOURCE_BALANCE_EXISTING) {
-                        sourceAccountId = id
+                        sourceAccountId = id ?: 0
                         viewModel.getSourceBalanceById(sourceAccountId)
                         bgIconSource.setCardBackgroundColor(
                             ContextCompat.getColor(
@@ -223,7 +223,7 @@ class IncomeFragment : FragmentBinding<FragmentIncomeBinding>(FragmentIncomeBind
                         )
                         tvTypeSource.text = nameString
                     } else {
-                        categoryId = id
+                        categoryId = id ?: 0
                         bgIcon.setCardBackgroundColor(
                             ContextCompat.getColor(
                                 requireActivity(),
@@ -241,9 +241,9 @@ class IncomeFragment : FragmentBinding<FragmentIncomeBinding>(FragmentIncomeBind
                 }
             }
             if (isPickIncomeCategory) {
-                viewModel.setButtonState(ValidateTransaction.TransactionState.CATEGORY, true)
+                viewModel.setButtonState(ValidateTransaction.TransactionPickState.CATEGORY, true)
             } else {
-                viewModel.setButtonState(ValidateTransaction.TransactionState.SOURCE_BALANCE, true)
+                viewModel.setButtonState(ValidateTransaction.TransactionPickState.SOURCE_BALANCE, true)
             }
         }
     }

@@ -5,7 +5,7 @@ import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -32,7 +32,7 @@ import java.util.*
 @AndroidEntryPoint
 class OutcomeFragment : FragmentBinding<FragmentOutcomeBinding>(FragmentOutcomeBinding::inflate) {
 
-    private val viewModel: TransactionViewModel by activityViewModels()
+    private val viewModel: TransactionViewModel by viewModels()
 
     private var dateTime = getCurrentDate(DEFAULT_DATE_FORMAT) + " ${getCurrentTime()}"
 
@@ -51,7 +51,7 @@ class OutcomeFragment : FragmentBinding<FragmentOutcomeBinding>(FragmentOutcomeB
 
         binding.tvSelectDate.text = getCurrentDate()
 
-        viewModel.setButtonState(ValidateTransaction.TransactionState.SOURCE_BALANCE, true)
+        viewModel.setButtonState(ValidateTransaction.TransactionPickState.SOURCE_BALANCE, true)
 
         observeListSourceBalance()
 
@@ -89,7 +89,7 @@ class OutcomeFragment : FragmentBinding<FragmentOutcomeBinding>(FragmentOutcomeB
         binding.etNominal.doOnTextChanged { text, _, _, _ ->
             val isNominalNotEmpty = text?.isNotEmpty() ?: false
             viewModel.setButtonState(
-                ValidateTransaction.TransactionState.NOMINAL,
+                ValidateTransaction.TransactionPickState.NOMINAL,
                 isNominalNotEmpty
             )
         }
@@ -123,7 +123,7 @@ class OutcomeFragment : FragmentBinding<FragmentOutcomeBinding>(FragmentOutcomeB
                 viewModel.sourceBalance.collect { result ->
                     result.onSuccess {
                         it?.let {
-                            sourceBalance  = it
+                            sourceBalance = it
                         }
                     }
                 }
@@ -181,7 +181,7 @@ class OutcomeFragment : FragmentBinding<FragmentOutcomeBinding>(FragmentOutcomeB
             date = dateTime,
             idTypeTransaction = TransactionCategorize.OUTCOME,
             categoryId = categoryId,
-            sId = sourceAccountId
+            sourceAccountId = sourceAccountId
         )
 
         val sourceBalanceNominal = sourceBalance.balance?.minus(nominal.toLong())
@@ -207,7 +207,7 @@ class OutcomeFragment : FragmentBinding<FragmentOutcomeBinding>(FragmentOutcomeB
             binding.apply {
                 with(category) {
                     if (categoryBotSheet == BotSheetCategoryFragment.CategoryBotSheet.SOURCE_BALANCE_EXISTING) {
-                        sourceAccountId = id
+                        sourceAccountId = id ?: 0
                         viewModel.getSourceBalanceById(sourceAccountId)
                         bgIconSource.setCardBackgroundColor(
                             ContextCompat.getColor(
@@ -223,7 +223,7 @@ class OutcomeFragment : FragmentBinding<FragmentOutcomeBinding>(FragmentOutcomeB
                         )
                         tvTypeSource.text = nameString
                     } else {
-                        categoryId = id
+                        categoryId = id ?: 0
                         bgIcon.setCardBackgroundColor(
                             ContextCompat.getColor(
                                 requireActivity(),
@@ -236,14 +236,14 @@ class OutcomeFragment : FragmentBinding<FragmentOutcomeBinding>(FragmentOutcomeB
                                 imageCategory
                             )
                         )
-                        tvTypeTransaction.text = getString(name ?: 0)
+                        tvTypeTransaction.text = getString(name ?: R.string.error)
                     }
                 }
             }
             if (isPickOutcome) {
-                viewModel.setButtonState(ValidateTransaction.TransactionState.CATEGORY, true)
+                viewModel.setButtonState(ValidateTransaction.TransactionPickState.CATEGORY, true)
             } else {
-                viewModel.setButtonState(ValidateTransaction.TransactionState.SOURCE_BALANCE, true)
+                viewModel.setButtonState(ValidateTransaction.TransactionPickState.SOURCE_BALANCE, true)
             }
         }
     }
