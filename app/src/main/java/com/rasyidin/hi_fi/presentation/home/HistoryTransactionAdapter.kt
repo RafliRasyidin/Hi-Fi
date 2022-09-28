@@ -45,26 +45,44 @@ class HistoryTransactionAdapter :
                     imgTransaction.setImageDrawable(
                         ContextCompat.getDrawable(
                             context,
-                            category.imageCategory
+                            category?.imageCategory ?: R.drawable.ic_tagihan
                         )
                     )
                     bgIcon.setCardBackgroundColor(
                         ContextCompat.getColor(
                             context,
-                            category.bgColor
+                            category?.bgColor ?: R.color.bg_blue
                         )
                     )
                     val nominal = "Rp.${formatRupiah(transaction.nominal ?: 0)}"
                     tvPrice.text = nominal
                     tvDesc.text =
                         if (transaction.description.isNullOrEmpty()) "-" else transaction.description
-                    val isOutcome = transaction.idTypeTransaction == TransactionCategorize.OUTCOME
-                    if (isOutcome) {
-                        tvPrice.setTextColor(ContextCompat.getColor(context, R.color.color_red))
-                        tvTypeTransaction.text = sourceBalance.name
-                    } else {
-                        tvPrice.setTextColor(ContextCompat.getColor(context, R.color.color_green))
-                        tvTypeTransaction.text = sourceBalance.name
+                    when (transaction.idTypeTransaction) {
+                        TransactionCategorize.OUTCOME -> {
+                            tvPrice.setTextColor(ContextCompat.getColor(context, R.color.color_red))
+                            tvTypeTransaction.text = sourceBalance?.name
+                        }
+                        TransactionCategorize.INCOME -> {
+                            tvPrice.setTextColor(ContextCompat.getColor(context, R.color.color_green))
+                            tvTypeTransaction.text = sourceBalance?.name
+                        }
+                        TransactionCategorize.TRANSFER -> {
+                            imgTransaction.setImageDrawable(
+                                ContextCompat.getDrawable(
+                                    context,
+                                    R.drawable.ic_transfer
+                                )
+                            )
+                            bgIcon.setCardBackgroundColor(
+                                ContextCompat.getColor(
+                                    context,
+                                    R.color.bg_gray
+                                )
+                            )
+                            tvPrice.setTextColor(ContextCompat.getColor(context, R.color.color_gray500))
+                            tvTypeTransaction.text = sourceBalance?.name
+                        }
                     }
                     if (isToday(transaction.date ?: "")) {
                         tvDate.text = context.getString(R.string.today)

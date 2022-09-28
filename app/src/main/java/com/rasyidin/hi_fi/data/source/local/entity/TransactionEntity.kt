@@ -14,7 +14,8 @@ data class TransactionEntity(
     var description: String? = null,
     var idTypeTransaction: TransactionCategorize = TransactionCategorize.OUTCOME,
     var categoryId: Int? = null,
-    var sId: Int? = null
+    var sourceAccountId: Int? = null,
+    var sourceAccountDestinationId: Int? = null
 ) {
     fun toDomain() = Transaction(
         id = transactionId,
@@ -23,6 +24,7 @@ data class TransactionEntity(
         description = description,
         idTypeTransaction = idTypeTransaction,
         categoryId = categoryId,
-        sId = sId
+        sourceAccountId = sourceAccountId,
+        sourceAccountDestinationId = sourceAccountDestinationId
     )
 }

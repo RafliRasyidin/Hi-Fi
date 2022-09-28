@@ -8,7 +8,7 @@ import com.rasyidin.hi_fi.domain.model.category.OUTCOME
 @Entity("category")
 data class CategoryEntity(
     @PrimaryKey
-    var categoryId: Int,
+    var categoryId: Int? = null,
     var bgColor: Int,
     var imageCategory: Int,
     var name: Int? = null,

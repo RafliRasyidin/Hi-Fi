@@ -12,7 +12,9 @@ import com.rasyidin.hi_fi.domain.usecase.transaction.ValidateTransaction
 import com.rasyidin.hi_fi.domain.usecase.transaction.ValidateTransaction.TransactionState.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,6 +33,28 @@ class TransactionViewModel @Inject constructor(private val useCase: UseCaseTrans
 
     private var _sourceBalance: MutableStateFlow<ResultState<SourceBalance>> = idle()
     val sourceBalance get() = _sourceBalance.asStateFlow()
+
+    private var _sourceBalanceFrom: MutableStateFlow<ResultState<SourceBalance>> = idle()
+    val sourceBalanceFrom get() = _sourceBalanceFrom.asStateFlow()
+
+    private var _sourceBalanceTo: MutableStateFlow<ResultState<SourceBalance>> = idle()
+    val sourceBalanceTo get() = _sourceBalanceTo.asStateFlow()
+
+    fun getSourceBalanceByIdFrom(sourceBalanceId: Int) {
+        viewModelScope.launch {
+            useCase.getSourceBalanceById(sourceBalanceId).collect { result ->
+                _sourceBalanceFrom.value = result
+            }
+        }
+    }
+
+    fun getSourceBalanceByIdTo(sourceBalanceId: Int) {
+        viewModelScope.launch {
+            useCase.getSourceBalanceById(sourceBalanceId).collect { result ->
+                _sourceBalanceTo.value = result
+            }
+        }
+    }
 
     fun getSourceBalanceById(sourceBalanceId: Int) {
         viewModelScope.launch {
@@ -68,12 +92,20 @@ class TransactionViewModel @Inject constructor(private val useCase: UseCaseTrans
                 useCase.validateTransaction.setSourceBalanceState(isValid)
                 getTransactionButtonState()
             }
+            SOURCE_BALANCE_FROM -> {
+                useCase.validateTransaction.setSourceBalanceFromState(isValid)
+                getTransactionButtonState(ValidateTransaction.TransactionType.TRANSFER)
+            }
+            SOURCE_BALANCE_TO -> {
+                useCase.validateTransaction.setSourceBalanceToState(isValid)
+                getTransactionButtonState(ValidateTransaction.TransactionType.TRANSFER)
+            }
         }
     }
 
-    private fun getTransactionButtonState() {
+    private fun getTransactionButtonState(transactionType: ValidateTransaction.TransactionType = ValidateTransaction.TransactionType.OUTCOME) {
         viewModelScope.launch {
-            useCase.validateTransaction.isValidated()
+            useCase.validateTransaction.isValidated(transactionType)
                 .collect { isValidated ->
                     _isValidated.value = isValidated
                 }

@@ -4,7 +4,7 @@ import com.rasyidin.hi_fi.data.source.local.entity.CategoryEntity
 import com.rasyidin.hi_fi.domain.model.balance.SourceBalance
 
 data class Category(
-    var id: Int,
+    var id: Int? = null,
     var bgColor: Int,
     var imageCategory: Int,
     var name: Int? = null,

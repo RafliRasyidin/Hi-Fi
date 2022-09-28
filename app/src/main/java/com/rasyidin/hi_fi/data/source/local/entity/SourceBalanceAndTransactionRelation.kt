@@ -9,22 +9,29 @@ data class SourceBalanceAndTransactionRelation(
     val transactions: TransactionEntity,
 
     @Relation(
-        parentColumn = "sId",
+        parentColumn = "sourceAccountId",
         entityColumn = "sourceId"
     )
-    val sourceBalance: SourceBalanceEntity,
+    val sourceBalance: SourceBalanceEntity? = null,
 
     @Relation(
         parentColumn = "categoryId",
         entityColumn = "categoryId"
     )
-    val category: CategoryEntity
+    val category: CategoryEntity? = null,
+
+    @Relation(
+        parentColumn = "sourceAccountDestinationId",
+        entityColumn = "sourceId"
+    )
+    val sourceBalanceDestination: SourceBalanceEntity? = null,
 ) {
     fun toDomain() : SourceBalanceAndTransaction {
         return SourceBalanceAndTransaction(
-            sourceBalance = this.sourceBalance.toDomain(),
+            sourceBalance = this.sourceBalance?.toDomain(),
             transaction = this.transactions.toDomain(),
-            category = this.category.toDomain()
+            category = this.category?.toDomain(),
+            sourceBalanceDestination = this.sourceBalanceDestination?.toDomain()
         )
     }
 }

@@ -12,7 +12,8 @@ data class Transaction(
     var description: String? = null,
     var idTypeTransaction: TransactionCategorize = TransactionCategorize.OUTCOME,
     var categoryId: Int? = null,
-    var sId: Int? = null
+    var sourceAccountId: Int? = null,
+    var sourceAccountDestinationId: Int? = null
 ) {
     fun toEntity() = TransactionEntity(
         transactionId = id,
@@ -21,12 +22,14 @@ data class Transaction(
         description = description,
         idTypeTransaction = idTypeTransaction,
         categoryId = categoryId,
-        sId = sId
+        sourceAccountId = sourceAccountId,
+        sourceAccountDestinationId = sourceAccountDestinationId
     )
 }
 
 data class SourceBalanceAndTransaction(
     val transaction: Transaction,
-    val sourceBalance: SourceBalance,
-    val category: Category
+    val sourceBalance: SourceBalance? = null,
+    val category: Category? = null,
+    val sourceBalanceDestination: SourceBalance? = null
 )
