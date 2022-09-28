@@ -1,6 +1,7 @@
 package com.rasyidin.hi_fi
 
 import android.app.Application
+import android.content.Context
 import com.facebook.flipper.android.AndroidFlipperClient
 import com.facebook.flipper.plugins.databases.DatabasesFlipperPlugin
 import com.facebook.flipper.plugins.inspector.DescriptorMapping
@@ -15,11 +16,12 @@ class HiFiApp : Application() {
 
     companion object {
         val networkFlipperPlugin = NetworkFlipperPlugin()
+        var appContext: Context? = null
     }
 
     override fun onCreate() {
         super.onCreate()
-
+        appContext = this
         if (BuildConfig.DEBUG) {
             Stetho.initializeWithDefaults(this)
             SoLoader.init(this, false)
